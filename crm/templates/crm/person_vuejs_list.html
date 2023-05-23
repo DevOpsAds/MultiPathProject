@@ -1,0 +1,208 @@
+<!-- person_vuejs_list.html-->
+{% extends 'includes/base.html' %}
+{% block css %}
+
+<style>
+     .form-inline {
+     justify-content:space-between;
+     margin-bottom: 10px;
+     color:fae6fa;
+     gap:60px;
+     }
+     .form-inline label {
+          margin-right: 10px;
+     }
+
+     .form-control {
+          margin-left: 10px;
+          background: aliceblue;
+     }
+     .is-link {
+          cursor:pointer;
+     }
+     .link {
+     color:#007bff;
+     }
+</style>
+
+{% endblock css %}
+
+{% block content %}
+
+<div id="app">
+     <div>
+          <h1>Pessoas com Vue.Js</h1>
+     </div>
+
+     <div>
+          <form @submit.prevent="submitForm" @keyup.enter="submitForm" class="form-inline" method="POST" >
+                {% csrf_token %}
+               <div class="form-group">
+                    <label class="required"> Nome </label>
+                    <input type="text" v-model="form.first_name" class= "form-control">
+               </div>
+               <div class="form-group">
+                    <label class="required"> Sobrenome </label>
+                    <input type="text" v-model="form.last_name" class= "form-control">
+               </div>
+               <div class="form-group">
+                    <label class="required"> E-mail </label>
+                    <input type="email" v-model="form.email" class= "form-control">
+               </div>
+               <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+
+               </div>
+          </form>
+          
+     </div>
+
+     <table class="table">
+          <thead>
+          <tr>
+               <th>Nome</th>
+               <th>E-mail</th>
+               <th>Ações</th>
+          </tr>
+          </thead>
+
+          <tbody>
+           <tr v-for ="person in persons" :key="person.id">
+                <td> <a :href="'/crm/' + person.id">${ person | fullName }</a></td>
+                <td>${ person.email }</td>
+                <td>
+                     <i class="fa fa-pencil-square-o link is-link" data-toggle="modal" data-target="#myModal" @click="editPerson(person)"></i>
+                     <i class="fa fa-close no is-link ml-2" @click="deletePerson(person)"></i>
+                </td>
+           </tr>
+          </tbody>
+     </table>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Editar</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form @submit.prevent="submitEditForm" class="form-horizontal" method="POST">
+              {% csrf_token %}
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="required">Nome</label>
+              <input type="text" v-model="editForm.first_name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="required">Sobrenome</label>
+              <input type="text" v-model="editForm.last_name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="required">E-mail</label>
+              <input type="text" v-model="editForm.email" class="form-control">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ref="clickMe">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+{% endblock content %}
+
+{% block vuejs %}
+
+<script>
+     axios.defaults.xsrfHeaderName = "X-CSRFToken";
+  axios.defaults.xsrfCookieName = "csrftoken";
+  var app = new Vue({
+    el: '#app',
+    delimiters: ['${', '}'],
+    data: {
+      persons: [],
+      form: {
+        first_name: '',
+        last_name: '',
+        email: '',
+      },
+      editForm: {
+        id: '',
+        first_name: '',
+        last_name: '',
+        email: '',
+      }
+    },
+    created() {
+      this.getData()
+    },
+    filters: {
+      fullName(value) {
+        return value.first_name + ' ' + value.last_name
+      }
+    },
+    methods: {
+      getData() {
+        axios.get('/crm/vuejs/json/')
+        .then(response => {
+          this.persons = response.data.data
+        })
+      },
+      submitForm() {
+        // Caso queira enviar uma string de valores...
+        // const payload = JSON.stringify(this.form)
+
+        // Vamos trabalhar com formulário
+        let bodyFormData = new FormData()
+
+        bodyFormData.append('first_name', this.form.first_name)
+        bodyFormData.append('last_name', this.form.last_name)
+        bodyFormData.append('email', this.form.email)
+
+        axios.post('/crm/vuejs/create/', bodyFormData)
+          .then(response => {
+            this.persons.push(response.data.data)
+          })
+          this.form = {}
+      },
+      editPerson(item) {
+        this.editForm.id = item.id
+        this.editForm.first_name = item.first_name
+        this.editForm.last_name = item.last_name
+        this.editForm.email = item.email
+      },
+
+      submitEditForm() {
+        let bodyFormData = new FormData()
+
+        bodyFormData.append('first_name', this.editForm.first_name)
+        bodyFormData.append('last_name', this.editForm.last_name)
+        bodyFormData.append('email', this.editForm.email)
+
+        axios.post(`/crm/${this.editForm.id}/vuejs/update/`, bodyFormData)
+          .then(response => {
+            this.$refs.clickMe.click()  // Fecha o modal
+            this.getData()
+          })
+      },
+      deletePerson(item) {
+        axios.delete(`/crm/${item.id}/vuejs/delete/`)
+          .then(() => {
+            const resIndex = this.persons.find(res => res.id === item.id);
+            this.persons.splice(resIndex, 1);
+          })
+      }
+    }
+  });
+</script>
+
+{% endblock vuejs %}

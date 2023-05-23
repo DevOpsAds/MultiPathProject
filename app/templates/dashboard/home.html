@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1>Area de Restrita</h1>
+<a href="/create/">Cadastro de clientes</a>
+<br>
+<a href="/painel/">Login de usuário</a>
+<a href="/logouts/">Sair</a>
+<hr>
+<a href="/dashboard/password/">Trocar de senha</a>
+
+<body>
+{% if perms.auth %}
+    <p>Estes serviços estão disponíveis para você.</p>
+    {% if perms.foo.add_vote %}
+        <p>You can vote!</p>
+    {% endif %}
+    {% if perms.auth.can_edit_users %}
+        <p>Escolha uma possibilidade:</p>
+        <form>
+          <div class="row date-range">
+            <div class="col-lg-3">
+              <label for="example1" class="sr-only">Data</label>
+              <div class="input-group datepicker">
+                <input type="text" class="form-control date-mask from-date" placeholder="dd/mm/aaaa">
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <label for="example1" class="sr-only">Data</label>
+              <div class="input-group datepicker">
+                <input type="text" class="form-control date-mask to-date" placeholder="dd/mm/aaaa">
+              </div>
+            </div>
+          </div>
+        </form>
+    {% endif %}
+{% else %}
+    <p>Esse usuario não tem permissão para escolher serviços ainda </p>
+{% endif %}
+
+</body>
+
+{% endblock %}

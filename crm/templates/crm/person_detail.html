@@ -1,0 +1,34 @@
+<!-- person_detail.html -->
+{% extends "includes/base.html" %}
+
+{% block content %}
+       {% if item in object.photos.all %}
+        <div class="alert {{class}}">
+            {{teste}}
+        </div>
+
+        {% endif %}
+
+
+  <h1>Detalhes</h1>
+
+       {% if item in object.photos.all %}
+        <div class="alert {{class}}">
+            teste
+        </div>
+
+        {% endif %}
+  <ul>
+    <li><b>Nome:</b> {{ object.full_name }}</li>
+    <li><b>E-mail:</b> {{ object.email|default:'---' }}</li>
+  </ul>
+
+  <div>
+
+    {% for item in object.photos.all %}
+      {% if item.photo %}
+        <img src="{{ item.photo.url }}" alt="" class="img-thumbnail" width="150px">
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock content %}

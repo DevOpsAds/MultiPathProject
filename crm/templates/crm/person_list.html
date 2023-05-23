@@ -1,0 +1,88 @@
+<!-- person_list.html -->
+{% extends "includes/base.html" %}
+
+{% block content %}
+  <h1>
+    Lista
+    <a class="btn btn-primary" href="{% url 'crm:person_create' %}">Adicionar</a>
+    <a class="btn btn-primary" href="{% url 'crm:photo_create' %}">Adicionar com Foto</a>
+    <a class="btn btn-primary" style="color: white;" data-toggle="modal" data-target="#myModal">Adicionar via Ajax</a>
+  </h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for object in object_list %}
+        <tr>
+          <td>
+            <a href="{{ object.get_absolute_url }}">{{ object.full_name }}</a>
+          </td>
+          <td>{{ object.email|default:'---' }}</td>
+          <td>
+            <a href="{% url 'crm:person_update' object.pk %}">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="{ url 'crm:person_delete' object.pk %}" style="padding-left: 7px">
+              <i class="fa fa-close no"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% include "includes/pagination.html" %}
+
+  {% include "./person_modal.html" %}
+{% endblock content %}
+
+{% block js %}
+
+
+<script>
+  $('form').on('submit', function(e) {
+    let url = '/crm/create/ajax/'
+    let postData = $('form').serialize();
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: postData,
+      success: function(response) {
+        addItem(response)
+      },
+      error: function(xhr) {
+        console.log('Erro')
+      },
+      complete: function() {
+        closeModal()
+      }
+    });
+    e.preventDefault();
+  });
+
+  function addItem(response) {
+    const data = response.data[0];
+    const template = '<tr>' +
+    '<td>' + data.first_name + ' ' + data.last_name + '</td>' +
+    '<td>' + data.email + '</td>' +
+    '</tr>'
+
+    $('table tbody').append(template)
+  };
+
+  function closeModal() {
+    $('#myModal').modal('hide');
+    // Limpa os campos
+    $('#id_first_name').val('');
+    $('#id_last_name').val('');
+    $('#id_email').val('');
+  }
+</script>
+
+{% endblock js %}

@@ -1,0 +1,18 @@
+<!-- person_bootstrap_form.html -->
+{% extends "includes/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+  <h1>Bootstrap_form</h1>
+  <div class="cols-6">
+    <form class="form-horizontal" action="." method="POST" enctype="multipart/form-data">
+      <div class="col-sm-6">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        {% endbuttons %}
+      </div>
+    </form>
+  </div>
+{% endblock content %}
