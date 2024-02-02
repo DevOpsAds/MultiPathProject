@@ -1,0 +1,197 @@
+<!-- lista_pendencias.html information/ -->
+{% extends "includes/bases.html" %}
+{% load static %}
+
+
+{% block content %}
+  <div>
+
+
+  </div>  
+
+
+  <h1>
+    Lista
+    <a class="btn btn-primary" href="{% url 'crm:person_create' %}">Adicionar</a>
+    <a class="btn btn-primary" href="{% url 'crm:photo_create' %}">Adicionar com Foto</a>
+    <a class="btn btn-primary" style="color: white;" data-toggle="modal" data-target="#myModal">Adicionar via Ajax</a>
+  </h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Pendencia</th>
+        <th> -- há pendencias</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for data1,data2 in data %}
+        <tr>
+          <td>
+            <a href="{{ object.get_absolute_url }}">{{ data2 }}</a>
+          </td>
+          <td>{{ data1|default:'---' }}</td>
+
+          <td>
+            <a href="{ url 'crm:person_update' object.pk %}">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="{ url 'crm:person_delete' object.pk %}" style="padding-left: 7px">
+              <i class="fa fa-close no"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+    <h1>Situação  do endereço</h1> 
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Pendencia</th>
+        <th> -- complete o endereço</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for endereco1,endereco2 in endereco %}
+        <tr>
+          <td>
+            <a href="{{ object.get_absolute_url }}">{{ endereco2 }}</a>
+          </td>
+          <td>{{ endereco1|default:'--' }}</td>
+
+          <td>
+            <a href="{ url 'crm:person_update' object.pk %}">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="{ url 'crm:person_delete' object.pk %}" style="padding-left: 7px">
+              <i class="fa fa-close no"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+     <h1>Situação do cadastro social</h1> 
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Pendencia</th>
+        <th> -- complete o cadastro social</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for contado_s1,contato_s2 in contato_social %}
+        <tr>
+          <td>
+            <a href="{{ object.get_absolute_url }}">{{ contato_s2 }}</a>
+          </td>
+          <td>{{ contado_s1|default:'--' }}</td>
+
+          <td>
+            <a href="{ url 'crm:person_update' object.pk %}">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="{ url 'crm:person_delete' object.pk %}" style="padding-left: 7px">
+              <i class="fa fa-close no"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+       <h1>Situação cadastro</h1> 
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Pendencia</th>
+        <th> -- complete o informativo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for situacao1,situacao2 in situacao %}
+        <tr>
+          <td>
+            <a href="{{ object.get_absolute_url }}">{{ situacao2 }}</a>
+          </td>
+          <td>{{ situacao1|default:'--' }}</td>
+
+          <td>
+            <a href="{ url 'crm:person_update' object.pk %}">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="{ url 'crm:person_delete' object.pk %}" style="padding-left: 7px">
+              <i class="fa fa-close no"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+<!-- person_modal.html -->
+
+
+{% endblock content %}
+
+{% block js %}
+
+<script>
+  $('form').on('submit', function(e) {
+    let url = '/crm/create/ajax/'
+    let postData = $('form').serialize();
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: postData,
+      success: function(response) {
+        addItem(response)
+      },
+      error: function(xhr) {
+        console.log('Erro')
+      },
+      complete: function() {
+        closeModal()
+      }
+    });
+    e.preventDefault();
+  });
+
+  function addItem(response) {
+    const data = response.data[0];
+    const template = '<tr>' +
+    '<td>' + data.first_name + ' ' + data.last_name + '</td>' +
+    '<td>' + data.email + '</td>' +
+    '</tr>'
+
+    $('table tbody').append(template)
+  };
+
+  function closeModal() {
+    $('#myModal').modal('hide');
+    // Limpa os campos
+    $('#id_first_name').val('');
+    $('#id_last_name').val('');
+    $('#id_email').val('');
+  }
+</script>
+
+{% endblock js %}

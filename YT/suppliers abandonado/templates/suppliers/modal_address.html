@@ -1,0 +1,80 @@
+<!-- suppliers/address_modal.html -->
+
+{% load static %}
+<script src="{% static 'js/jquery.js' %}"></script>
+
+{% block content %}
+<!-- suppliers/suppliers_modal address.html -->
+
+
+
+
+
+
+  <div class="grid-item" id="modal_address" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Consultar</h4>
+        <button type="button" class="close" data-dismiss="modal"  style="color: red"; data-target="#modal_endereco"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <!-- Formulario -->
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+              {% include "address/filter_cep.html" %}
+
+
+              <div class="form-group">              
+              <label for="address_number">nº:</label>
+              {{ form.address_number }}
+              </div>
+
+
+              <div class="form-group">              
+              <label for="complemento">Complemento:</label>
+              {{ form.complemento }}
+              </div>
+
+              <div class="form-group">              
+              <label for="address_number">Telefone:</label>
+              {{ form.phone }}
+              </div>
+
+              <div class="form-group">
+              <label for="regionSelect">Região:</label>
+              {{ form.regions }}
+              </div>
+
+
+              <div style="margin-top: 30px; border: 2 red;">
+        
+               
+
+               </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="btnclose_modalenderco" type="button" class="btn btn-default" data-target="#modal_endereco" data-dismiss="modal">Fechar</button>
+         
+           <button id="btnUpdate"  type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+   </div>
+
+
+{% endblock content %}
+
+{% block js %}
+<script>
+
+
+</script>
+
+{% endblock js %}
+
+

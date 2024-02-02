@@ -1,0 +1,9 @@
+*0 faça um copia com backup
+1para corrigir erros em migrate deixar somente o 0001_initial e  migrations/__pycache__0001_initial.cpython-38 o registos
+ apagar todos os registos de migrate rode o makemigrations e em seguida migrate 
+
+para esse erro  va no arquivo que sobrou entao localize o user... e apague a linha salve siga o processo 1
+ in _execute
+    return self.cursor.execute(sql)
+django.db.utils.ProgrammingError: column "user_register_id" of relation "lockwell_mtb_matrix" does not exist
+

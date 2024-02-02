@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.models import User
 
 
@@ -85,5 +85,7 @@ def dopassword(request):
         # return redirect('/painel/',data)
 
 
-
+def logout_view(request):
+    logout(request)
+    return redirect ('app:dashboard',)
 

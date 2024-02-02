@@ -1,0 +1,108 @@
+<!-- person_detail.html -->
+{% extends "includes/base_suppliers.html" %}
+{% load static %}
+
+{% block content %}
+       {% if item in object.photos.all %}
+        <div class="alert {{class}}">
+            {{teste}}
+        </div>
+
+        {% endif %}
+
+
+  <h1>Detalhes</h1>
+
+       {% if delete %}
+        <div style="border: dashed 1px grey;">
+          <form id="myForm"
+            method="POST"
+            class="form-inline"
+         >
+             {% csrf_token %}
+
+        <div class="alert {{class}}">
+           {{msg}}
+        </div>
+
+        {% endif %}
+
+        
+
+       
+        <div class="form-group">          
+          <a class="btn btn-info" href="{% url 'supplier:SuppliersListView' %}" > Lista</a>
+        </div>
+     
+      
+
+        {% if delete %}
+        {% include "./modal_delete.html" %}
+      </form>
+        {% endif %}
+
+  <ul>
+
+    <li><b>Fornecedor:</b> {{ object.trade_name }}</li>
+    <li><b>Nome fantasia:</b> {{ object.social_name|default:'---' }}</li>
+    <li><b>Situação:</b> {{ object.situacao|default:'---' }}</li>
+    <li><b>CNPJ:</b> {{ object.cnpj|default:'---' }}</li>
+    <li><b>IE:</b> {{ object.ie|default:'---' }}</li>
+   
+  </ul>
+
+    <ul>
+     <h2>CEP:{{ object.cep|default:'---'}}</h2> 
+     Endereço:
+    <li><b>Av/Rua:</b> {{ object.address }}<b>n:</b> {{ object.address_number|default:'---' }} : <b>Complemento:</b>{{ object.complement|default:'---' }} <p>Bairro:</b>{{ object.district|default:'---' }}<b>Cidade:</b>{{ object.city|default:'---' }}<b>UF:</b>{{ object.uf|default:'---' }}<b>Pais:</b>{{ object.country|default:'---' }}</p></li>
+     Contato:
+    <li><b>Nome fantasia:</b> {{ object.social_name|default:'---' }}</li>
+    <li><b>Situação:</b> {{ object.situacao|default:'---' }}</li>
+    <li><b>CNPJ:</b> {{ object.cnpj|default:'---' }}</li>
+    <li><b>IE:</b> {{ object.ie|default:'---' }}</li>
+   
+  </ul>
+
+  <div>
+
+    {% for item in object.photos.all %}
+      {% if item.photo %}
+        <img src="{{ item.photo.url }}" alt="" class="img-thumbnail" width="150px">
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock content %}
+
+
+{% block js %}
+
+<script>
+  $('form').on('submit', function(e) {
+    let url = 'http://localhost:8000/supplier/10/delete/';
+    let postData = $('form').serialize();
+    console.log(url)
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data:{
+        postData,
+        "pk":10,
+      },
+      success: function(response) {
+        window.location.href='nova/paginas'
+      },
+      error: function(xhr) {
+        console.log('Erro')
+      }
+    
+    });
+    e.preventDefault();
+  });
+
+
+
+
+</script>
+
+{% endblock js %}

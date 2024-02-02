@@ -1,0 +1,101 @@
+<!-- person_modal.html -->
+{% extends "includes/base_supplier.html" %}
+
+{% load static %}{% extends "includes/base_supplier.html" %}
+
+<div class="modalfade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Consultar o Cep</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <!-- Formulario -->
+          <script src="{% static 'js/jquery.js' %}"></script>
+      <form>
+        <div class="modal-body">
+          {% csrf_token %}
+          <div class="form-group">
+             <div class="cep" >
+              {% if cep %}
+              <p>Cep:</p>
+              <input  data-url="{% url 'address:ceps_ajax' %}?cep=}" type="nuber" data-cep="{{cep}}" class="cep" id="id_cep" name="id_cep"value="{{cep}}">
+              {% else %}
+               <p>Cep:</p>
+               <input  data-url="{% url 'address:ceps_ajax' %}?cep=}" type="nuber" data-cep="{{cep}}" class="cep" id="id_cep" name="id_cep" autofocus placeholder="Consulta de CEP" >
+              {% endif %}
+              <p>Logradouro:</p>
+              <input  type="" class="endereco" id="id_endereco" name="id_endereco" value="{{endereco}}">
+              <p>Bairro:</p>
+              <input  type="" class="bairro" id="id_bairro" name="id_bairro" value="{{bairro}}">
+              <p>Cidade:</p>
+              <input  type="" class="cidade" id="id_cidade" name="id_cidade" value="{{cidade}}">
+              <p>UF:</p>
+              <input  type="" size ="3" class="uf" id="id_uf" name="id_uf" value="{{uf}}" maxLength="2">
+          </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% block js %}
+
+
+
+<script>
+
+  $(document).ready(function(){
+    $('#id_cep').focus();
+  })
+
+  $('.cep').on('keypress', function(event) {
+
+   
+    let keyCode = event.which || event.KeyCode;
+    //console.log("tecla"+ event.which);
+    if (keyCode === 13){
+      let url = $(this).data('url'+'cep');
+      let cep = $(this).val();
+      let qtdeDeDigitosCep=cep.length
+      if (qtdeDeDigitosCep < 9 && qtdeDeDigitosCep == 8) {
+        cep = cep.slice(0,5)+ "-" + cep.slice(5);
+        console.log("novo cep"+ cep);
+      } else {
+        alert('digitação errada')
+      }
+      
+
+      //console.log(url);
+      //console.log ("quantidade de digitação cep"+qtdeDeDigitosCep)
+      //console.log ("digitação da caixa cep"+ cep)
+      window.location.href='?cep='+cep
+
+
+   
+    }
+
+    if (keyCode === 44){
+      event.preventDefault();
+        $('#id_cep').val('');
+        $('#id_cep').attr('placeholder','...insira o cep.');
+
+    } 
+  
+   
+
+
+  
+
+
+   
+  });   
+</script>
+
+{% endblock js %}
+
+

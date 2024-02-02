@@ -1,0 +1,71 @@
+<!-- person_form_as_p.html -->
+{% extends "includes/base.html" %}
+{% load static %}
+
+{% block css %}
+  <style>
+    .required:after {
+      content: "*";
+      color: red;
+    }
+    .errorlist {
+      list-style: none;
+      color: red;
+    }
+  </style>
+{% endblock css %}
+
+{% block content %}
+
+  <h1>Formulário form.as_p</h1>
+  <div class="cols-6">
+
+    <form class="form-horizontal" action="." method="POST">
+      {% csrf_token %}
+
+        <div class="col-sm-6">
+            {{ form.media }}
+          {{ form.as_p }}
+
+        <div class="form-group">
+          <button class="btn btn-primary"  type="submit" >Salvar</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+{% endblock content %}
+
+{% block js %}
+
+
+<script>
+
+  $('form').on('', function(e) {
+    let url = '//localhost:8000/market/create_as_p/'
+    let postData = $('form').serialize();
+    $('#id_value_pay').val('');
+    $('#id_nuberFiscal').val('');
+    $('#id_I_federal').val('');
+    $('#id_I_Estadual').val('');
+    $('#id_classify').val('');
+
+
+  });
+
+
+  function cleanFields() {
+    // Limpa os campos
+    $('#id_value_pay').val('');
+    $('#id_nuberFiscal').val('');
+    $('#id_I_federal').val('');
+    $('#id_I_Estadual').val('');
+    $('#id_classify').val('');
+
+
+
+  }
+
+</script>
+
+{% endblock js %}

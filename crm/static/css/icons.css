@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Icone';
+    src: url('http://localhost:8000/static/fonts/MaterialIcons.ttf') format('truetype');
+}
+
+
+.icon{
+    font-family: Icone;
+}

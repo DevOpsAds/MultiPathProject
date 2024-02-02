@@ -1,0 +1,75 @@
+<!-- suppliers/address_modal.html -->
+
+{% load static %}
+<script src="{% static 'js/jquery.js' %}"></script>
+
+{% block content %}
+<!-- suppliers/suppliers_modal address.html -->
+
+
+
+
+
+
+  <div class="grid-item" id="modal_address" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Consultar</h4>
+        <button type="button" class="close" aria-label="Close" data-dismiss="modal"  style="color: red"; data-target="#modal_endereco"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <!-- Formulario -->
+      <form>
+        <div class="modal-body">
+          <div id=display_modal>
+      
+      
+
+          <div id="cep_information"class="information" style="display:block;">
+     
+            
+          </div>
+
+            
+        <div class="form-group">
+          <label for="cep">CEP:</label>
+          <input id="cep" class="form-control" data-dismiss="input" placeholder="Digite o CEP"> Sim</input>
+        </div>
+                    
+       
+        </div>
+        
+        <div class="modal-footer">
+           <div class="form-group">
+          <a type="button" class="btn btn-light" href="#" > Fechar</a>
+       
+              
+          <a type="button" class="btn btn-warning" href="#" > Ok!</a>
+       </div>
+     
+            
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+   </div>
+
+
+{% endblock content %}
+
+{% block js %}
+<script>
+
+$(document).ready(function(){
+  alert('Mypost 1')
+ $('#cep').mask('00000-000');
+ let debug= $('#cep').val();
+ console.log('line:59,def:cep log sfacil ,form pagepagina,evento_investigado:event'+debug)
+});
+
+</script>
+
+{% endblock js %}
+
+

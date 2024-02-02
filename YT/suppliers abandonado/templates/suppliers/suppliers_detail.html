@@ -1,0 +1,223 @@
+  {% extends "includes/base_suppliers.html" %}
+  {% load static %}
+
+  {% block content %}
+
+
+ 
+{% if msg %}
+    <div class="col-6 mt-4 m-auto ">
+      <div class="alert {{class}}"> {{msg}}</div>
+    </div>       
+{% endif %}
+
+
+  <div class="col-6 mt-4 m-auto">
+    <div class="alertf"></div>
+  </div>
+
+
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Detalhe do fornecedor</h1>
+    </div>
+  </div>
+   
+
+    
+    <h1>
+      Lista
+      <a class="btn btn-primary" href="http://localhost:8000/suppliers/41/information/">Ficha</a>
+      <a class="btn btn-primary" href="{% url 'crm:photo_create' %}">Adicionar com Foto</a>
+      <a class="btn btn-primary"id="btnmodal_endereco" style="color: white;" data-toggle="modal" data-target="#myModal">not is null</a>
+
+      <div class="btn-group">
+      <button type="button" class="btn btn-default" style="background:red;color: white;"data-target="#modal_endereco" data-dismiss="modal_endereco" aria-label="fechar modal"> 
+      [|Endereço] </button>
+      <button type="button" class="btn btn-default" style="background:green;color: white;"data-target="#modal_adicionar" data-dismiss="modal_adicionar" aria-label="fechar modal">
+      [|Adicionar] </button>
+      <button type="button" class="btn btn-success" style="background:#b56b12;color: white;"data-target="#modal_sit_cat" data-dismiss="modal_sit_cat" aria-label="fechar modal">
+      [|Situção cadastral] </button>
+      </div>
+         
+         {% if item in object.photos.all %}
+          <div class="alert {{class}}">
+          {{teste}}
+          </div>
+         {% endif %}
+
+    <div class="grid-container">
+
+    <div class="grid-item" id="modal_endereco" style="display: block">{% include "./address_modal.html" %} </div>
+    <div class="grid-item" id="modal_adicionar" style="display: none">{% include "./modal_adicionar.html" %} </div>
+    <div class="grid-item" id="modal_sit_cat" style="display: none">{% include "./modal_sit_cat.html" %} </div>
+    <div class="grid-item" id="detalhe_pendecia_cad" style="display: none">pendente </div>
+    
+    <div class="grid-item">item 4</div>
+    
+    </div>
+
+
+
+    <h1>Detalhes</h1>
+         {% csrf_token %}
+
+         {% if item in object.photos.all %}
+          <div class="alert {{class}}">
+              teste
+          </div>
+
+          {% endif %}
+    <ul id="myList">
+      <li><b>Nome:</b> {{ object.trade_name }}</li>
+      <li><b>E-mail:</b> {{ object.email|default:'---' }}</li>
+      <li id="cep_detalhe" data-cep="{{ object.cep}}"><b>cep:</b> {{ object.cep|default:'---' }}</li>
+    </ul>
+
+    <div>
+
+      {% for item in object.photos.all %}
+        {% if item.photo %}
+          <img src="{{ item.photo.url }}" alt="" class="img-thumbnail" width="150px">
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endblock content %}
+
+
+  {% block js %}
+  <script type="text/javascript">
+    let debug='var $PADRAO@!'
+
+   function exibirResultado(id, dados){
+        const texto=JSON.stringify(id)
+        console.log (texto+"visitado")      
+          }
+
+    function customize_modal(custom){
+            
+         switch (custom){
+       case 1:
+
+        // mude o modal para  edição ;
+        console.log('modelo de edição implementar')
+            const template = '<div class="grid-item" id="modal_address" >'+
+                              '<div class="modal-dialog" role="document">'+
+                              '<div class="modal-content">'+
+                              '<div style="color: gren;"class="modal-header">'+
+                              '<h4 class="modal-title" id="myModalLabel"><a href="" style="color: gren;padding-left: 7px" data-target="#modal_adicionar" data-custom="1" class="icon">&#xe3c9;</a> Editar.</h4>'
+                              
+                              +'</div>'
+
+        $('.customize').html(template)
+        break;
+       
+
+       case 2:
+        // mude o modal para modelo de consulta orientar pra todos  
+        console.log('modelo de consulta orienter para todos  implementar');
+        break;
+
+
+        }
+      }
+
+ 
+         
+
+        $(document).ready(function(){
+        
+        let url = window.location.href+'information/';
+        let id = $(this).data('id');
+        console.log(url);
+        let postData = $('form').serialize();
+
+        $.ajax({
+          type:'GET',
+          url:url,
+          dataType:'',
+          data:{
+            data: postData,
+          },
+         success: function(response){
+        
+           console.log(response)
+          
+
+          },
+        
+        
+
+        });
+
+
+
+         });
+
+        
+        $(".btn,.close,.icon").on('click',function(event) {
+          let custom = $(this).data('custom')
+          let modalName=$(this).data('target'); 
+
+          console.log('line:162,def:query .btn,form pages:supplier_detall,evento_investigado:btn_click'+debug)      
+         
+        if (modalName){
+         
+         if ($(modalName).css("display")==="block"){
+          $(modalName).css('display','none');
+
+         }else{
+          $(modalName).css('display','block');  
+         };
+
+        }else{
+         
+          let linkDirection=$(".btn,.close,.icon").attr('href');
+          window.location.href=linkDirection;
+        }
+
+
+        if (!custom){
+          customize_modal(custom)
+        }else{
+           
+            if (cep){
+                
+            const template = '<div class="grid-item" id="modal_address" >'+
+                              '<div class="modal-dialog" role="document">'+
+                              '<div class="modal-content">'+
+                              '<div class="modal-header">'+
+                              '<h4 class="modal-title" id="myModalLabel">+'+'+ Editar.</h4>'
+                              
+                              +'</div>'
+            }else{
+             
+            const template = '<div class="grid-item" id="modal_address" >'+
+                              '<div class="modal-dialog" role="document">'+
+                              '<div class="modal-content">'+
+                              '<div class="modal-header">'+
+                              '<h4 class="modal-title" id="myModalLabel">+'+'+ Adicionar.</h4>'
+                              
+                              +'</div>'
+            }      
+
+            $('.customize').html(template)
+        }
+
+        
+       
+        event.preventDefault();
+        });
+
+
+
+
+
+
+
+
+
+   
+
+  </script>
+  {% endblock js %}

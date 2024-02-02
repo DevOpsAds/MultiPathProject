@@ -1,0 +1,141 @@
+<!-- suppliers/suppliers_modal adicionar1841.html -->
+{% extends "includes/base_suppliers.html" %}
+{% load static %}
+<script src="{% static 'js/jquery.js' %}"></script>
+
+{% block content %}
+<!-- suppliers/suppliers_modal address.html -->
+
+
+    <div class="col-6 mt-4 m-auto ">
+        {% if msg %}
+        <div class="alert {{class}}">
+            {{msg}}
+        </div>
+
+        {% endif %}
+   </div>
+   <div class="col-6 mt-4 m-auto">
+    <div class="alertf"></div>
+        
+        
+
+
+ </div>
+
+
+
+  <div class="grid-item" id="modal_adicionar">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">.Adicionar</h4>
+
+        <button type="button" class="close" data-dismiss="modal" data-target="#modal_adicionar" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <!-- Formulario -->
+      <form>
+         {% csrf_token %}
+        <div class="modal-body">
+          <div class="form-group">
+              <div class="row">
+    <p>
+    <label for="id_trade_name">nome fantasia :</label>
+    <input type="text" name="trade_name" class="form-control" id="id_trade_name">
+    </p>
+
+  
+    <p>
+    <label for="id_social_name">nome social :</label>
+    <input type="text" name="social_name" required=""class="form-control" id="id_social_name">
+    </p>
+
+  
+    <p>
+    <label for="id_cnpj">cnpj:</label>
+    <input type="text" name="cnpj" required=""class="form-control" id="id_cnpj">
+    </p>
+
+  
+    <p>
+    <label for="id_email">email:</label>
+    <input type="email" name="email" class="form-control"id="id_email">    
+    </p>
+          
+          </div>
+         
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" style="background:green;color: white;"data-target="#modal_adicionar" data-dismiss="modal_adicionar" aria-label="fechar modal">Salvar</button>
+         
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+ </div>
+
+
+
+{% endblock content %}
+{% block js %}
+<script>
+
+
+
+  $(document).ready(function(){
+    let url = "//localhost:8000/suppliers/update_supplier/"
+    let postData = $('form').serialize();
+    let myurl=window.location.href
+    alert('Mypost')
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: {  
+        postData,
+        "pk":41,
+        "id_cep":"000011",
+        "id_endereco": "miguel",
+        "id_bairro":"postmain",
+        "id_cidade":'belo horizonte',
+        "id_uf":"mH",
+        "msg":"Alteração confirmada com sucesso!",
+        "alert":"alert-success"
+        
+      },
+      success: function(response) {
+        console.log('Post Confirmado !'+response.data) ; 
+               const template = '<div class="'+ response.data[1] +'"><h4 style="color: green">'+ response.data[0] +'</h4></div>'
+
+        $('.alertf').html(template) 
+      },
+      error: function(xhr) {
+        console.log('Erro')
+      },
+    
+    });
+    e.preventDefault();
+  });
+  
+
+
+   function addItem(response) {
+    const data = response.data;
+    console.log(data); 
+   
+    const template = '<tr>' +
+    '<td>' + 'nome' + '</td>' +
+    '<td>' + 'email' + '</td>' +
+
+    '</tr>'
+
+    $('table tbody').append(template)
+    console.log=data
+ 
+  };
+
+</script>
+
+{% endblock js %}

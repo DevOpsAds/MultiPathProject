@@ -2,17 +2,19 @@
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 
-# from django.urls import reverse_lazy
+from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from .forms import PersonForm0, PersonForm1, PersonForm2, PersonForm, ContactForm, PersonPhotoForm
 from .models import Person, Photo
+from relacionChip.forms import StateForm
 
 
 def person_list(request):
     template_name = 'crm/person_list.html'
     object_list = Person.objects.all()
-    form=PersonForm2#form do ajax
+    form=StateForm#form do ajax
     context = {'object_list': object_list,'form':form}
     return render(request, template_name, context)
 
@@ -81,7 +83,7 @@ def person_as_p(request):
 
 
 def person_detaill(request, pk):
-    template_name = 'crm/person_detail.html'
+    template_name = 'crm/templates/person_detail.html'
     obj = Person.objects.get(pk=pk)
     context = {'object': obj}
     return render(request, template_name, context)
@@ -164,6 +166,10 @@ def person_create_ajax(request):
             data=[person.to_dict()]
 
             return JsonResponse({'data': data})
+    return render(request,template_name)
+
+
+
 
 def person_vuejs_list(request):
     template_name= 'crm/person_vuejs_list.html'
@@ -177,7 +183,7 @@ def person_json(request):
 
 def person_vuejs_create(request):
     #template_name = 'o templete no caso esta em list onde será incoporado o form '
-    form= PersonForm2(request.POST or None)
+    form= PersonForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             person=form.save()

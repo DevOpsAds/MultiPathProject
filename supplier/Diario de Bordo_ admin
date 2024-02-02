@@ -1,0 +1,537 @@
+
+
+Diario de Bordo_ admin
+
+[31/Jul/2023 10:12:00] "GET /admin HTTP/1.1" 301 0
+[31/Jul/2023 10:12:00] "GET /admin/ HTTP/1.1" 302 0
+
+
+Crud('delete') ok
+[31/Jul/2023 10:43:02] "GET /supplier/3/vdelete/ HTTP/1.1" 200 4307
+line:166,def: suppliers_delete,form page: views,evento_investigado: event delete ok3
+[31/Jul/2023 10:43:04] "GET /supplier/3/delete/ HTTP/1.1" 302 0
+controlle na escuta o ----------------------modulo
+line:23,def: retifica _list,form page: supplier_list,evento_investigado: atividade controller controlle em atividade !@@ 06 : controlle.py
+line:110,def: get_fields,form page: choices,evento_investigado: get_frist_choice_nameapp.Active.situacao
+line:115,def: hasattr,form page: for /if ,evento_investigado: situation_name app.Active.situacao
+line:110,def: get_fields,form page: choices,evento_investigado: get_frist_choice_nameapp.Active.active
+line:115,def: hasattr,form page: for /if ,evento_investigado: situation_name None
+line:110,def: get_fields,form page: choices,evento_investigado: get_frist_choice_nameapp.Active.exist_deleted
+line:115,def: hasattr,form page: for /if ,evento_investigado: situation_name None
+line:54,def: situation_name,form page: views,evento_investigado: capurar nome choicesNone
+[31/Jul/2023 10:43:04] "GET /supplier/vlist/ HTTP/1.1" 200 3528
+^C(myenv) robofild@robofild-System-Product-Name:~/python/login/project$ 
+processos de negocio :
+
+#1- integração corrente do codigo
+	-dashboard,
+
+	ierros-a problemas com dasboard em outros botoes-ok
+	django.utils.datastructures.MultiValueDictKeyError: 'user'
+	[31/Jul/2023 12:25:52] "GET /dologin/ HTTP/1.1" 500 75102
+	Not Found: /logouts/
+	[31/Jul/2023 12:25:56] "GET /logouts/ HTTP/1.1" 404 4320
+
+	-menu
+	controlle na escuta o ---------> implemento de modolo menu supplier
+	line:103,def: Update _list,form page: supplier_list,evento_investigado: #1- integração corrente do codigocontrolle em atividade !@@ 06 : controlle.py
+	System check identified no issues (0 silenced).
+	July 31, 2023 - 14:14:15
+	final
+	[31/Jul/2023 14:52:49] "GET /static/fonts/MaterialIcons.ttf HTTP/1.1" 200 128180
+
+
+#2- melhorias em em captição de dados
+	-cep facil criado por euzinho.
+
+	
+	controlle na escuta o ---------> implemento de modulo CEP S_FACIL
+	line:103,def: Update _list,form page: supplier_list,evento_investigado: #1- integração corrente do codigocontrolle em atividade !@@ 06 : controlle.py
+	System check identified no issues (0 silenced).
+	July 31, 2023 - 15:03:01
+	view address- filter_cep flou 117
+	[31/Jul/2023 17:24:21] "GET /address/filter_cep/?cep=30425-240&postData=&pk=41&id_cep=000011 HTTP/1.1" 200 2270
+	controlle na escuta o ---------> implemento de modulo CEP S_FACIL
+	line:103,def: Update _list,form page: supplier_list,evento_investigado: #1- integração corrente do codigocontrolle em atividade !@@ 06 : controlle.py
+	System check identified no issues (0 silenced).
+	July 31, 2023 - 18:00:58
+	[31/Jul/2023 21:16:57] "GET /static/js/jquery.js HTTP/1.1" 200 86927
+	[31/Jul/2023 21:16:57] "GET /static/css/bootstrap.min.css.map HTTP/1.1" 404 1834
+	[31/Jul/2023 21:16:57] "GET /static/fonts/Oswald-Regular.ttf HTTP/1.1" 200 93132
+	ierros mobilidade verificar e testar com mais ceps 
+
+
+
+
+	-listar variaçoes de atendente e pessoas relacionadas a entidade
+
+#3- computaçao dos dados
+
+#4- apresentaçao dos dados 
+#5- front end
+
+
+	#segurança 
+	-correção de ierros
+
+	#sensoes 
+
+
+	# visual
+	adaptação ocular maximada
+ 
+
+ <sipner= load = >
+ [31/Jul/2023 13:55:00] "GET /supplier/vlist/ HTTP/1.1" 200 3841
+ [31/Jul/2023 14:07:52] "GET /static/fonts/Oswald-Regular.ttf HTTP/1.1" 200 93132
+
+
+
+cores
+
+ vermelho 11:50 belo horizonte cd1707
+ verde 259979
+ laranja icons #e59823
+
+to time:
+[31/Jul/2023 10:43:02] #1
+[31/Jul/2023 12:25:56] #1 finail /
+01:42:54 -
+
+
+
+gração corrente do codigocontrolle em atividade !@@ 06 : controlle.py
+System check identified no issues (0 silenced).
+August 01, 2023 - 11:14:34
+
+
+processos de negocio :
+
+-
+
+#1- integração corrente do codigo
+	-dashboard,
+
+	ierros-a problemas com dasboard em outros botoes
+
+
+
+
+	-menu
+
+	[01/Aug/2023 11:57:28] "GET /painel/ HTTP/1.1" 200 1030
+
+
+#2- melhorias em em captição de dados
+	-cep facil criado por euzinho.
+		esc para sair do model
+		 si esc entra o foco no nome do contato 
+
+	-ierros mobilidade verificar e testar com mais ceps 
+
+
+
+
+	-listar variaçoes de atendente e pessoas relacionadas a entidade
+
+#3- computaçao dos dados
+nome de contato nao preenchido 
+ ....informacos de logisticas e custos 
+ moviemento temopos e atendentes ..
+
+telefone nao preechido 
+	1 nao a conmunicação com o contato 
+	2 nemhum documento possibilitou a captura facio do contato
+
+
+#4- apresentaçao dos dados 
+
+
+#5- front end
+
+
+	#segurança 
+	-correção de ierros
+
+	#sessões
+	providenciar um feedback em modal cep quando o cep 
+
+
+
+	# visual
+	sublimer contato com esc apos receber o foco imprima em vez de nome : nome do contato em laiout
+	templete de login logat cudiad do dash borade 
+	email 
+	adaptação ocular maximada
+ 
+
+ <sipner= load = >
+ [31/Jul/2023 13:55:00] "GET /supplier/vlist/ HTTP/1.1" 200 3841
+ [31/Jul/2023 14:07:52] "GET /static/fonts/Oswald-Regular.ttf HTTP/1.1" 200 93132
+
+
+
+cores
+
+ vermelho 11:50 belo horizonte cd1707
+ verde 259979
+ laranja icons #e59823
+
+to time:
+[31/Jul/2023 10:43:02] #1
+[31/Jul/2023 12:25:56] #1 finail /
+01:42:54 -
+
+
+Diario de Bordo_ admin
+
+[31/Jul/2023 10:12:00] "GET /admin HTTP/1.1" 301 0
+[31/Jul/2023 10:12:00] "GET /admin/ HTTP/1.1" 302 0
+
+
+Crud('delete') ok
+[31/Jul/2023 10:43:02] "GET /supplier/3/vdelete/ HTTP/1.1" 200 4307
+line:166,def: suppliers_delete,form page: views,evento_investigado: event delete ok3
+[31/Jul/2023 10:43:04] "GET /supplier/3/delete/ HTTP/1.1" 302 0
+controlle na escuta o ----------------------modulo
+line:23,def: retifica _list,form page: supplier_list,evento_investigado: atividade controller controlle em atividade !@@ 06 : controlle.py
+line:110,def: get_fields,form page: choices,evento_investigado: get_frist_choice_nameapp.Active.situacao
+line:115,def: hasattr,form page: for /if ,evento_investigado: situation_name app.Active.situacao
+line:110,def: get_fields,form page: choices,evento_investigado: get_frist_choice_nameapp.Active.active
+line:115,def: hasattr,form page: for /if ,evento_investigado: situation_name None
+line:110,def: get_fields,form page: choices,evento_investigado: get_frist_choice_nameapp.Active.exist_deleted
+line:115,def: hasattr,form page: for /if ,evento_investigado: situation_name None
+line:54,def: situation_name,form page: views,evento_investigado: capurar nome choicesNone
+[31/Jul/2023 10:43:04] "GET /supplier/vlist/ HTTP/1.1" 200 3528
+^C(myenv) robofild@robofild-System-Product-Name:~/python/login/project$ 
+processos de negocio :
+
+#1- integração corrente do codigo
+	-dashboard,
+
+	ierros-a problemas com dasboard em outros botoes
+	django.utils.datastructures.MultiValueDictKeyError: 'user'
+	[31/Jul/2023 12:25:52] "GET /dologin/ HTTP/1.1" 500 75102
+	Not Found: /logouts/
+	[31/Jul/2023 12:25:56] "GET /logouts/ HTTP/1.1" 404 4320
+
+	-menu
+	controlle na escuta o ---------> implemento de modolo menu supplier
+	line:103,def: Update _list,form page: supplier_list,evento_investigado: #1- integração corrente do codigocontrolle em atividade !@@ 06 : controlle.py
+	System check identified no issues (0 silenced).
+	July 31, 2023 - 14:14:15
+	final
+	[31/Jul/2023 14:52:49] "GET /static/fonts/MaterialIcons.ttf HTTP/1.1" 200 128180
+
+
+#2- melhorias em em captição de dados
+	-cep facil criado por euzinho.
+
+	
+	controlle na escuta o ---------> implemento de modulo CEP S_FACIL
+	line:103,def: Update _list,form page: supplier_list,evento_investigado: #1- integração corrente do codigocontrolle em atividade !@@ 06 : controlle.py
+	System check identified no issues (0 silenced).
+	July 31, 2023 - 15:03:01
+	view address- filter_cep flou 117
+	[31/Jul/2023 17:24:21] "GET /address/filter_cep/?cep=30425-240&postData=&pk=41&id_cep=000011 HTTP/1.1" 200 2270
+	controlle na escuta o ---------> implemento de modulo CEP S_FACIL
+	line:103,def: Update _list,form page: supplier_list,evento_investigado: #1- integração corrente do codigocontrolle em atividade !@@ 06 : controlle.py
+	System check identified no issues (0 silenced).
+	July 31, 2023 - 18:00:58
+	[31/Jul/2023 21:16:57] "GET /static/js/jquery.js HTTP/1.1" 200 86927
+	[31/Jul/2023 21:16:57] "GET /static/css/bootstrap.min.css.map HTTP/1.1" 404 1834
+	[31/Jul/2023 21:16:57] "GET /static/fonts/Oswald-Regular.ttf HTTP/1.1" 200 93132
+	ierros mobilidade verificar e testar com mais ceps 
+
+
+
+
+	-listar variaçoes de atendente e pessoas relacionadas a entidade
+
+#3- computaçao dos dados
+
+#4- apresentaçao dos dados 
+#5- front end
+
+
+	#segurança 
+	-correção de ierros
+
+	#sensoes 
+
+
+	# visual
+	adaptação ocular maximada
+ 
+
+ <sipner= load = >
+ [31/Jul/2023 13:55:00] "GET /supplier/vlist/ HTTP/1.1" 200 3841
+ [31/Jul/2023 14:07:52] "GET /static/fonts/Oswald-Regular.ttf HTTP/1.1" 200 93132
+
+
+
+cores
+
+ vermelho 11:50 belo horizonte cd1707
+ verde 259979
+ laranja icons #e59823
+
+to time:
+[31/Jul/2023 10:43:02] #1
+[31/Jul/2023 12:25:56] #1 finail /
+01:42:54 -
+
+
+
+@1/08
+
+
+gração corrente do codigocontrolle em atividade !@@ 06 : controlle.py
+System check identified no issues (0 silenced).
+August 01, 2023 - 11:14:34
+
+
+processos de negocio :
+
+-
+
+#1- integração corrente do codigo
+	-dashboard,
+
+	ierros-a problemas com dasboard em outros botoes
+
+
+
+
+	-menu
+
+	[01/Aug/2023 11:57:28] "GET /painel/ HTTP/1.1" 200 1030
+
+
+#2- melhorias em em captição de dados
+
+		esc para sair do model
+		 si esc entra o foco no nome do contato 
+
+	-ierros mobilidade verificar e testar com mais ceps 
+
+
+-listar variaçoes de atendente e pessoas relacionadas a entidade intelgince artifical
+
+#3- computaçao dos dados
+nome de contato nao preenchido 
+ ....informacos de logisticas e custos 
+ moviemento temopos e atendentes ..
+
+telefone nao preechido 
+	1 nao a conmunicação com o contato 
+	2 nemhum documento possibilitou a captura facio do contato
+
+
+#4- apresentaçao dos dados 
+
+
+#5- front end
+
+
+	#segurança 
+	-correção de ierros
+
+	#sensoes 
+
+
+	# visual
+	sublimer contato com esc apos receber o foco imprima em vez de nome : nome do contato em laiout
+	templete de login logat cudiad do dash borade 
+	email 
+	adaptação ocular maximada
+ 
+
+ <sipner= load = >
+ [31/Jul/2023 13:55:00] "GET /supplier/vlist/ HTTP/1.1" 200 3841
+ [31/Jul/2023 14:07:52] "GET /static/fonts/Oswald-Regular.ttf HTTP/1.1" 200 93132
+
+
+
+cores
+
+ vermelho 11:50 belo horizonte cd1707
+ verde 259979
+ laranja icons #e59823
+
+to time:
+[31/Jul/2023 10:43:02] #1
+[31/Jul/2023 12:25:56] #1 finail /
+01:42:54 -
+
+
+@2/08
+
+controlle na escuta o ---------> implemento de modulo CEP S_FACIL
+line:103,def: Update _list,form page: supplier_list,evento_investigado: #1- integração corrente do codigocontrolle em atividade !@@ 06 : controlle.py
+System check identified no issues (0 silenced).
+August 02, 2023 - 12:00:03
+
+
+
+processos de negocio :
+
+-iA ZanasK. mude o logo
+	-ciencias de dados machine learnn
+ 	-capturar dados analise do cadastro
+ 	-criar neurônio mul
+ 	sinapse motora p_analise 
+
+#1- integração corrente do codigo
+	-dashboard,
+
+	ierros-a problemas com dasboard em outros botoes
+	[01/Aug/2023 11:57:28]
+
+
+
+
+	-menu
+
+	[01/Aug/2023 11:57:28] "GET /painel/ HTTP/1.1" 200 1030
+
+
+#2- melhorias em em captição de dados
+
+		esc para sair do model
+		[02/Aug/2023 12:12:53] 
+		[02/Aug/2023 12:26:21]
+
+		 si esc entra o foco no nome do contato 
+		 [02/Aug/2023 12:31:32] 
+
+
+	-ierros mobilidade verificar e testar com mais ceps 
+
+
+-listar variaçoes de atendente e pessoas relacionadas a entidade intelgince artifical
+
+#3- computaçao dos dados
+nome de contato nao preenchido 
+ ....informacos de logisticas e custos 
+ moviemento temopos e atendentes ..
+
+-Ai telefone nao preechido iA ZanasK. o 
+	1 nao a conmunicação com o contato 
+	2 nemhum documento possibilitou a captura facio do contato
+
+
+#4- apresentaçao dos dados 
+
+
+#5- front end
+
+
+	#segurança 
+	-correção de ierros
+
+	#sensoes 
+
+
+	# visual
+	+ZanasK. mude o logo
+	-ok ja listado a cima-sublimer contato com esc apos receber o foco imprima em vez de nome : nome do contato em laiout
+	[02/Aug/2023 12:31:32] 
+	-foco do formulario com brilho azul-
+	-templete de login logat cudiad do dash borade 
+	-email 
+	-adaptação ocular maximada
+ 
+
+ <sipner= load = >
+ [31/Jul/2023 13:55:00] "GET /supplier/vlist/ HTTP/1.1" 200 3841
+ [31/Jul/2023 14:07:52] "GET /static/fonts/Oswald-Regular.ttf HTTP/1.1" 200 93132
+
+
+
+cores
+
+ vermelho 11:50 belo horizonte cd1707
+ verde 259979
+ laranja icons #e59823
+
+to time:
+[31/Jul/2023 10:43:02] #1
+[31/Jul/2023 12:25:56] #1 finail /
+01:42:54 -
+
+
+
+	--? 
+August 04, 2023 - 09:16:39
+####Interator 1
+#Peso -0.10999999999999999
+saida 0
+erro 0
+-----Aprendizado concluido!
+
+
+August 04, 2023 - 19:01:21
+50%
+
+
+# veja o video apartir dos 13 minutos
+
+# veja o video apartir dos 13 minutos
+
+# veja o video apartir dos 13 minutos video15
+
+
+
+
+System check identified no issues (0 silenced).
+August 10, 2023 - 09:53:23
+#-modelagen front end.
+
+#- login  [10/Aug/2023 11:49:05] "GET /static/js/axios.min.js.map HTTP/1.1" 404 1816
+basico falta nav.
+
+volta do  almoço
+[10/Aug/2023 14:26:02] "GET /dashboard/ HTTP/1.1" 200 2788i
+
+iniciando varredura frontend-supplier
+
+um grande dia para se lembrar com saudade
+[10/Aug/2023 23:14:42] "GET /supplier/vlist/ HTTP/1.1" 200 7029
+
+
+verificando a possibilidade de registros em cep consultar atomations
+ou seja um endereço com cep generico podera retorna apenas a cidade 
+
+
+XXX mobilidade front
+
+
+seja que se o cep ja esta no banco o cadastro e direciona ao cep generioco ou seja fica disponivel apenas para prenchimento dos proximos campos de endereços sendo possivel
+ao sem cep pesquisar e incluir o cep ao cadastro facilite a vida do operador
+caso sem cep botao disponivel para endereço 
+usar form mais_que simples pois o cadastro vai vir sem endereço
+cadastro cep generico buscar prenchimento dos campos de entereçoes caso os enderelos forem negligenciados mude a operação para cadastro cada vez mais simples cooreden com as operçoes do inteligecia do sistema e go
+"!!!"15/08/2023 13:49
+
+
+ajustes para aplications graficas ***componetes do suplier
+aplication in graficos
+
+introduçao a correcao dos erro em model 
+ontem foi um dia dificio estive tratando erros em 17/08/2023.
+de 4 as 18 de um desconto o dia foi tumutuado de mais minha cabeca nao esta boa verificar fragmentos
+
+
+alimentos divisao por 
+
+calorias,:
+
+saciar a fome: batata mandioca, batata doce..
+
+nutrição,: frutas e outras
+
+gostativos,:paladar tempero e outros
+
+cauculo area,: esforço tempo e da educação alimentar
+

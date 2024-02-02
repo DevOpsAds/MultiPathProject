@@ -1,6 +1,6 @@
 from django.urls import include, path
 app_name = 'app'
-from app.views import home, create, store, painel, dologin, dashboard, password, dopassword
+from app.views import (home, create, store, painel, dologin, dashboard, password, dopassword,logout_view)
 
 urlpatterns = [
 
@@ -9,9 +9,8 @@ urlpatterns = [
     path('store/', store),
     path('painel/', painel),
     path('dologin/', dologin),
-    path('dashboard/', dashboard),
+    path('dashboard/', dashboard,name='dashboard'),
     path('password/', password),
     path('dopassword/', dopassword),
-
-
+    path('logout/',logout_view,name='logout'),
 ]

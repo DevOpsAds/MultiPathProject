@@ -1,0 +1,80 @@
+<!-- person_list.html -->
+{% extends "includes/base_suppliers.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Área do fornecedor</h1>
+    <p>zanask</p>
+  </div>
+</div>
+
+    <div style="border: dashed 1px grey;">
+    <form id="myForm"
+            method="GET"
+            class="form-inline"
+            data-regions="{{ request.GET.id_region }}"
+            data-bairros="{{ request.GET.id_bairro }}" >
+  
+    Lista
+    <a class="btn btn-primary" href="{% url 'supplier:SuppliersCreateView' %}">Adicionar</a>
+    <a class="btn btn-primary" href="{% url 'crm:photo_create' %}">Adicionar com Foto</a>
+    <a class="btn btn-primary" style="color: white;" data-toggle="modal" data-target="#myModal">Adicionar via Ajax</a>
+  </h1>
+    </form>
+    </div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Fornecedor</th>
+        <th>Ativo/NG_ativo</th>
+        <th>Existe/Delete</th>
+        <th>Situação</th>
+        <th>CNPJ</th>
+        <th>Ações</th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for object in object_list %}
+        <tr>
+          <td> <a href="{{ object.get_absolute_url }}/supplier/{{ object.pk }}/vdetail">{{ object.trade_name }}</a></td>
+          <td>{{ object.active|default:'---' }}</td>
+          <td>{{ object.exist_deleted|default:'---' }}</td>
+          <td>{{ object.situacao|default:'---' }}</td>
+          <td>{{ object.cnpj|default:'---' }}</td>
+
+          <td>
+            <a  id='supp_detail' href="{% url 'supplier:SuppliersDetailView' object.pk %}"   id='supp_update' style="color: #259979;padding-left: 7px" data-target="#modal_endereco" data-custom="2" class="icon">&#xe55c;</a>
+
+            <a id='supp_edit' href="{% url 'supplier:SuppliersUpdateView' object.pk %}"  style="color: #e59823;padding-left: 7px" data-target="#modal_adicionar" data-custom="1" class="icon">&#xe3c9;</a>
+            
+            <a  id='supp_delete' class="btn btn-danger" href="{% url 'supplier:SuppliersDeleteView' object.pk %}" style="color:#fffff; padding-left: 7px">
+              <i class="icon">&#xe92b;</i>
+            </a>
+        
+            
+           
+          </td>
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  
+
+<!-- person_modal.html -->
+
+
+{% endblock content %}
+
+{% block js %}
+
+
+{% endblock js %}

@@ -1,0 +1,56 @@
+
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('../fonts/Oswald-Regular.ttf') format('truetype');
+}
+
+* {
+    font-family: 'Oswald', sans-serif;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+body {
+    margin: 0;
+    background-color:#e1e0e2;
+    color: #ba6cc7;
+    height: 100%;
+}
+.spinner{
+    margin: auto;
+    width: 80px;
+    height: 80px;
+    border: 10px solid rgb(227 12 12 / 10%);
+    border-top-color: #e1e0e2;
+    border-radius: 50%;
+    animation: spin 8s linear infinite;
+}
+
+.login-box{
+    max-width: 400px;
+    margin: 0 auto;
+    padding:  20px;
+    border: 1px solid #dee2e6;
+    border-radius:  5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.login-input{
+    background-color: #f1e7e79c;
+    box-shadow: 1px -1px 10px #980ac140;
+    padding: 15px;
+  
+}
+
+.mt-4 {
+    margin-top: 0.5rem!important;
+}
+
+.container {
+   padding-top: 52px;
+}

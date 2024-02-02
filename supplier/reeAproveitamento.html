@@ -1,0 +1,87 @@
+   <div class="col-md-2 d-md-none">
+
+
+      <button class="btn btn-light d-block d-md-none mb-3" type="button" data-toggle="collapse" data-target="#dropdownMenu"
+  aria-controls="dropdownMenu" aria-expanded="false">menu light
+  </button>
+  <div class="collapse d-md-block id="dropdownMenu>
+    <ul class="list-group">
+      <li class="list-group-item"><a href="#">Pagina Inicial</a></li>
+      <li class="list-group-item"><a href="#">Sobre Nós</a></li>
+      <li class="list-group-item dropdown">
+        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Serviços
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">serviços 1</a>
+          <a class="dropdown-item" href="#">serviços 2</a>
+          <a class="dropdown-item" href="#">serviços 3</a>
+        </div>
+          
+    </li>
+    <li class="list-group-item"><a href="#">Contato</a></li>
+  </div>
+
+
+
+
+    <div class="dropdown">
+      <a class="btn btn-secundary dropdown">
+         botão parasobile
+
+       teste
+        </a>
+   
+   
+  
+
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">serviços 1</a></li>
+          <li><a class="dropdown-item" href="#">serviços 2</a></li>
+          <li><a class="dropdown-item" href="#">serviços 3</a></li>
+        </ul>
+          </div>
+
+.model
+
+
+
+
+# Direção de atuação do mercado 
+
+
+
+@django code
+
+    @property
+    def routine_moviment_expense(self):
+        return f' {self.movement_expense or ""  } {str("/->")} {self.name }'.strip()
+
+    def __str__(self):
+       return str(self.routine_moviment_expense)
+
+           Spending,
+        on_delete=models.CASCADE,
+        verbose_name='classificação',
+        related_name='spending',
+
+
+
+codigo diplay supplier
+        def __str__(self):
+        return f"{self.trade_name}-{self.get_situacao_display()}" 
+
+    class Meta:
+        ordering = ('situacao','-active','exist_deleted','trade_name',)
+        verbose_name = 'fornecedor'
+        verbose_name_plural = 'fornecedores'
+
+
+            createdrel_by = models.ForeignKey(
+        User,
+        default=1,
+        on_delete=models.SET_NULL,
+        related_name='%(class)screate',
+        null=True,
+        blank=True
+    )

@@ -1,0 +1,142 @@
+<!-- person_list.html -->
+{% extends "includes/base_supplier.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Área do fornecedor</h1>
+    <p>zanask</p>
+  </div>
+</div>
+
+    <div style="border: dashed 1px grey;">
+    <form id="myForm"
+            method="GET"
+            class="form-inline"
+            data-regions="{{ request.GET.id_region }}"
+            data-bairros="{{ request.GET.id_bairro }}" >
+  
+    Lista
+    <a class="btn btn-primary" href="{% url 'supplier:SuppliersCreateView' %}">Adicionar</a>
+    <a class="btn btn-primary" href="{% url 'crm:photo_create' %}">Adicionar com Foto</a>
+    <a class="btn btn-primary" style="color: white;" data-toggle="modal" data-target="#myModal">Adicionar via Ajax</a>
+  </h1>
+    </form>
+    </div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Fornecedor</th>
+      
+        <th>Ativo/NG_ativo</th>
+
+        <th>Existe/Delete</th>
+
+        <th>Situação</th>
+        <th>CNPJ</th>
+        <th>Ações</th>
+
+      </tr>
+    </thead>
+    <tbody>
+  
+        
+
+      {% for object,tempo in bola %}
+
+          {%if  object.situacao < '5' and object.situacao >= '3' %}
+            <span style="color: #ec2222;" title="dias para o excluir do sistema!"class="icon"> &#xe160;</span> </td>
+   
+            {% endif %}
+   
+        <tr>
+          <td> <a href="{{ object.get_absolute_url }}/supplier/{{ object.pk }}/vdetail">{{ object.trade_name }} </td>
+
+        
+          {% if object.active %}
+          <td> <input class="form-check-input" type="checkbox"  checked ></td>
+          {% else %}
+            {% if object.exist_deleted  %}
+            <td> {{tempo.ultimas_modificacoes}} <span style="color: #2a618c;" title="dias para ativiar no sistema"class="icon">&#xe88e;</span> </td>
+            {% else %}
+            <td></td>
+            {% endif %}
+          {% endif %}
+
+          {% if object.exist_deleted  %}
+          <td> <input class="form-check-input" type="checkbox"  checked ></td>
+          {% else %}
+          <td>{{tempo.ultimas_modificacoes}}
+
+             {%if  object.situacao == '1' %}
+            <span style="color: #b4941a94;" title="Qualidade que seguimenta!"class="icon"> &#xe838;</span> </td>
+   
+            {% endif %}
+            
+
+             {%if  object.situacao < '3' and object.situacao >= '1' %}
+           
+            <span style="color: #50b41a94;" title="Melhores dias para o sistema!"class="icon"> &#xe8d0;</span> </td>
+             {% endif %}
+
+             {%if  object.situacao < '5' and object.situacao >= '3' %}
+            <span style="color: #1ab47394;" title="Não a muito o que se falar!"class="icon"> &#xe153;</span> </td>
+            
+             {% endif %}
+             
+             {%if  object.situacao < '7' and object.situacao >= '5' %}
+               
+            <span style="color: red;" title="Tempo e esforço!"class="icon"> &#xe160;</span> </td>
+   
+            {% endif %}
+
+            
+            {%if  object.situacao == '7' %}
+         
+            <span style="color: red;" title="Dias para excluir do sistema!!"class="icon"> &#xe872;</span> </td>
+            {% endif %}
+
+       
+         
+
+          
+          {% endif %}
+          
+         
+          <td>{{ object.get_situacao_display|default:'---' }}</td>
+          <td>{{ object.cnpj|default:'---' }}</td>
+
+          <td>
+            <a  id='supp_detail' class="btn-list-crud-success" help-text="ldlk" href="{% url 'supplier:SuppliersDetailView' object.pk %}"   id='supp_update' style="color:#fffff;padding-left: 7px" data-target="#modal_endereco" data-custom="2"><i class="icon">&#xe55c;</i></a>
+
+            <a id='supp_edit'class="btn-list-crud-warning" href="{% url 'supplier:SuppliersUpdateView' object.pk %}"  style="color:#fffff;padding-left: 7px" data-target="#modal_adicionar" data-custom="1"> <i class="icon">&#xe3c9;</i></a>
+            
+            <a  id='supp_delete' class="btn-list-crud-danger" href="{% url 'supplier:SuppliersDeleteView' object.pk %}" style="color:#fffff; padding-left: 7px">
+              <i class="icon">&#xe872;</i>
+            </a>
+        
+            
+           
+          </td>
+
+        </tr>
+     
+      {% endfor %}
+  
+  </table>
+
+  
+
+<!-- person_modal.html -->
+
+
+{% endblock content %}
+
+{% block js %}
+
+
+{% endblock js %}

@@ -1,0 +1,314 @@
+<!-- person_form_as_p.html -->
+{% extends "includes/base_supplier.html" %}
+{% load static %}
+
+{% block css %}
+  <style>
+    .required:after {
+      content: "*";
+      color: red;
+    }
+    .errorlist {
+      list-style: none;
+      color: red;
+    }
+  </style>
+{% endblock css %}
+
+{% block content %}
+  <h1>Formulário form.as_p</h1>
+  <div class="cols-6">
+
+
+    <form id="trunkModal" class="form-horizontal" style="display: none; "action="." method="POST">
+      {% csrf_token %}
+     
+
+        <div class="col-sm-6">
+         
+  
+          {{ form.as_p }}
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+
+      </div>
+    </form>
+ 
+     
+  </div>
+  </div>
+</div>
+
+{% include "./modal_training_ia.html" %}
+
+{% endblock content %}
+
+
+{% block js %}
+<script>
+ let formValue={};
+ let binaryNullouTrue
+ 
+
+  function iaKanaskModuloTradutor(formValue){
+    let modal= document.getElementById("myModal");
+    let trunkform= document.getElementById("trunkModal");
+    console.log(formValue)
+    //trancription function
+  
+
+    Object.keys(formValue).forEach(key => {
+      const value =formValue[key];
+
+
+      
+      if(typeof value === 'string' && value.trim()===''){
+      
+        binaryNullouTrue='0'+ binaryNullouTrue
+
+      }else{
+      
+        binaryNullouTrue='1'+binaryNullouTrue
+      }
+      
+
+      if(typeof value === 'boolean' && !value){
+        binaryNullouTrue='0'+binaryNullouTrue
+
+      }else{
+        binaryNullouTrue='1'+binaryNullouTrue
+      }
+
+      binaryNullouTrue=binaryNullouTrue.replace('undefined','').trim();
+
+    });
+    
+
+    //$('#id_cep').val(val_digit);
+    modal.style.display="none";
+    trunkform.style.display="block";
+    console.log('acesso a sendmodal')
+    console.log(binaryNullouTrue)
+     
+  }
+
+ function iaKanask(){
+  let modal=document.getElementById("myModal");
+  let form =modal.querySelector("form");
+ 
+  let inputs =form.querySelectorAll("input");
+  let modalSelect =modal.querySelector(".modal-select");
+
+
+  inputs.forEach(function (input) {
+    if (input.type ==="checkbox"){
+      formValue[input.name]= input.checked;
+    }else{
+      formValue[input.name]=input.value;
+    }
+  })
+
+ iaKanaskModuloTradutor(formValue);
+   
+  
+ }
+
+ function cleanAddress(){
+    document.getElementById("id_address").value="";
+     document.getElementById("id_district").value=""; 
+      document.getElementById("id_city").value="";
+       document.getElementById("id_uf").value="";       
+  
+ }
+
+  function includElement(){
+   let at_class=document.querySelector(".col-sm-6");
+   let cont_item=at_class.querySelectorAll("p");
+   if(cont_item.length >=16){
+    let includeELE=document.createElement("button");
+    includeELE.textContent ="CEP";
+    includeELE.className ="btn btn-warning";
+    includeELE.onclick =function(){
+      openModal();
+    };
+
+
+    at_class.insertBefore(includeELE,cont_item[16]);
+   }
+  }
+
+
+
+   function openModal(){ 
+
+
+    let modal= document.getElementById("myModal");
+    let trunkform= document.getElementById("trunkModal");
+    modal.style.display="block";
+    trunkform.style.display="none";
+  }
+
+  function hideModal(){    
+    let modal= document.getElementById("myModal");
+    let trunkform= document.getElementById("trunkModal");
+    modal.style.display="none";
+    trunkform.style.display="block";
+  }
+
+
+
+  //incluir o botao cep 
+  // cleanAddress() usar quando necessário!
+
+
+  
+
+
+
+  $(document).ready(function(){
+
+    $('select').on('change',function () {
+      let selectedValue=$(this).val();
+      let selectedValueElement=$('#selectedValue');
+    
+      if (selectedValue ===""){
+       binaryNullouTrue='0'+binaryNullouTrue
+        //selectedValueElement.text("nenhum valor selecionado!")
+
+      }else{
+        binaryNullouTrue='1'+binaryNullouTrue
+       // selectedValueElement.text('algum valor selecionado:${selectedValue}')
+      }
+      // body..
+    })
+    includElement();
+    let botaoCep=$("<button>CEP</button>");
+    botaoCep.attr("id","btnLocCep");
+    botaoCep.addClass("btn btn-warning")
+  })
+    $(document).on('keydown', function(event) {
+      if (event.key =="Escape"){
+        hideModal();
+       $('#id_nome').focus();
+     
+
+      }
+    console.log(event.KeyCode);
+    })
+
+   $('#id_call').on('keypress', function(event) {
+    
+    let keyCode = event.which || event.KeyCode;
+    //console.log("tecla"+ event.which);
+    if (keyCode === 13){
+      let idCall = $('#id_call').val();
+
+
+        console.log(idCall)
+      
+
+ 
+       event.preventDefault();
+    }
+
+    if (keyCode === 44){
+      event.preventDefault();
+        $('#cep').val('');
+        $('#cep').attr('placeholder','...insira o cep.');
+
+    } 
+
+    if (event.keyCode === 27){
+      event.preventDefault();
+      hideModal();
+
+    } 
+  
+   
+  });   
+  
+  $('#id_cep').on("click",function(){
+    openModal(); 
+
+  })
+
+  $('#btnCloseModal').on("click", function(event) {
+
+     event.preventDefault();
+    hideModal();
+  })
+
+  $('#cep').change(function(){
+    let url = "//localhost:8000/address/filter_cep/?cep="+$('#cep').val()
+    let postData = $('form').serialize();
+    let myurl=window.location.href
+    let dismiss=$(this).data('dismiss')
+    
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      dataType:'json',
+      success: function(response) {
+          if (response){
+           addItem(response);
+          }else{
+            cleanAddress()
+
+          }
+       
+
+      },
+      error: function(xhr) {
+       console.log(error)
+        cleanAddress()
+      },
+      complete: function() {
+        loadingSpiner()
+      }
+    
+    });
+    e.preventDefault();
+    $('#btnOk').focus();
+  });
+
+  function addItem(response) {
+        $('#id_address').val(response.data[0]);
+        $('#id_district').val(response.data[1]);
+        $('#id_city').val(response.data[2]);
+        $('#id_uf').val(response.data[3]);
+   
+    const template = '<tr>' +
+    '<td>' + response.data[0]+ ' ' + response.data[1] + '</td>' +
+    '<td>' + response.data[2]+ ''+response.data[3]+'</td>' +
+    '</tr>'
+
+    $('.information').append(template)
+    
+  };
+
+    function closeModal() {
+    $('#myModal').modal('hide');
+    // Limpa os campos
+ 
+  }
+
+    function loadingSpiner() {   
+    const template = 
+        '<div class="spinner" style="display:block; border: 20px solid rgb(227 12 12 / 10%);'+
+    'border-top-color: #4b9eb1;; margin: auto; animation: spin 7s linear infinite;'+
+    '"> </div>'
+     $('.information').append(template)
+    };
+  
+    $('#closemodal').on("click", function(){
+      closeModal();
+    });
+
+
+
+</script>
+
+{% endblock js %}

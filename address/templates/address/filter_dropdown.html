@@ -1,0 +1,142 @@
+<!-- relacion_form_as_p.html -->
+{% extends "includes/bases.html" %}
+{% load static %}
+
+<script src="{% static 'jquery.js' %}"></script>
+
+
+
+{% block content %}
+
+<div class="jumbotron">
+  <div class="container">
+    <h2>Exemplo de de filter dropdown vários listas</h2>
+    <p><i>Segundo choice filtrando a partir do primeiro choice</i></p>
+    <p><a href="localhost:8000/admin/">implementação de text</a></p>
+
+    <div style="border: dashed 1px grey;">
+       <form id="myForm"
+            method="GET"
+            class="form-inline"
+            data-urlcities="{% url 'relacionChip:cities_choices_ajax' %}"
+            data-urldistricts="{% url 'relacionChip:districts_choices_ajax' %}"
+            >
+     
+         <div class="form-group">
+          <label for="stateSelect">Estado</label>
+            {{ form.as_p }}
+
+        </div>
+
+        <div class="form-grop" style="padding: 10px;">
+          <label for="citySelect">Cidade</label>
+          <select id="citySelect" class="form-controll">
+            <option>---------------------</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="padding:10px;">
+          <label for="districtSelect">Bairro</label>
+          <select class="form-control" id="districtSelect" name="district">
+            <option>---------------------</option>
+          </select>
+        </div>
+
+
+        <div class="form-group">
+          <button class="btn btn-success" type="submit">Filtrar</button>
+        </div>
+
+
+      </form>
+    </div>
+
+
+  </div>
+</div>
+
+
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead style="width: 100%;">
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>UF</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for person in persons %}
+            <tr>
+              <td>{{ person.name }}</td>
+              <td>{{ person.email }}</td>
+              <td>{{ person.phone }}</td>
+              <td>{{ person.district }}</td>
+              <td>{{ person.district.city }}</td>
+              <td>{{ person.district.city.uf }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+  <hr>
+
+</div> <!-- /container -->
+
+
+{% endblock content %}
+
+{% block js %}
+
+<script>
+ $('#id_state').change(function() {
+      let urlCities = $('#myForm').data('urlcities');
+      let ufIdCity = $(this).val();
+       //console.log(ufIdCity);
+       //console.log(urlCities);
+
+      $.ajax({
+        url: urlCities,
+        data: {
+          uf: ufIdCity
+        },
+        success: function(response) {
+          $('#citySelect').html(response);
+          $('#districtSelect').html('<option value="">---------------------</option>');
+        }
+      })
+    });
+
+   $('#citySelect').change(function() {
+      let urlDistricts = $('#myForm').data('urldistricts');
+      let cityIdDistrict = $(this).val();
+       console.log(urlDistricts);
+       console.log(cityIdDistrict);
+
+      $.ajax({
+        url: urlDistricts,
+        data: {
+          city: cityIdDistrict
+        },
+        success: function(response) {
+          console.log(response)
+          $('#districtSelect').html(response);
+          //$('#districtSelect').html('<option value="">---------------------</option>');
+        }
+      })
+    });
+
+      //event.preventDefault();
+    
+</script>
+
+{% endblock js %}

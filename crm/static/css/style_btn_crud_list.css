@@ -1,0 +1,61 @@
+
+
+.btn-list-crud-success {
+    text-decoration: none;
+    color: #fff;
+    background-color: ##28a745;
+    border-color: #28a745;
+    border-radius: 11px;
+    margin: 2px;
+    padding: 0px 10px 0px 10px;
+    box-shadow: 0 2px 4px 1px #172254a6;
+}
+
+.btn-list-crud-success:hover {
+    color: #fff;
+    background-color: #309046;
+    border-color: #28a745;
+    margin: 2px;
+    padding: 10px 10px 12px 10px;
+    box-shadow: 0 2px 4px 1px #172254a6;
+}
+
+.btn-list-crud-warning {
+    text-decoration: none;
+    color: #fff;
+    background-color: ##a77228;
+    border-color: ##28a745;
+    border-radius: 11px;
+    margin: 2px;
+    padding: 0px 10px 0px 10px;
+    box-shadow: 0 2px 4px 1px #172254a6;
+}
+
+.btn-list-crud-warning:hover {
+    color: #fff;
+    background-color: #90580a;
+    border-color: #28a745;
+    margin: 2px;
+    padding: 10px 10px 12px 10px;
+    box-shadow: 0 2px 4px 1px #172254a6;
+}
+
+.btn-list-crud-danger {
+    text-decoration: none;
+    color: #fff;
+    background-color: ##a31f1ff0;
+    border-color: #28a745;
+    border-radius: 11px;
+    margin: 2px;
+    padding: 0px 10px 0px 10px;
+    box-shadow: 0 2px 4px 1px #172254a6;
+}
+
+.btn-list-crud-danger:hover {
+    color: #fff;
+    background-color: #f31010f0;
+    border-color: #28a745;
+    margin: 2px;
+    padding: 10px 10px 12px 10px;
+    box-shadow: 0 2px 4px 1px #172254a6;
+}

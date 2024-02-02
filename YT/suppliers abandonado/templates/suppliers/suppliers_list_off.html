@@ -1,0 +1,277 @@
+<!-- asuppliers_list.html -->
+
+{% extends "includes/base_suppliers.html" %}
+
+{% load static %}
+
+{% block css %}
+  <script src="{% static 'jquery.js' %}"></script>
+{% endblock css %}
+
+{% block content %}
+
+
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Área do fornecedor</h1>
+  </div>
+</div>
+
+
+
+  <h1>
+    Lista 14:02
+    <a class="btn btn-primary" href="{ url 'suppliers:person_create' %}">Adicionar</a>
+    <a class="btn btn-primary" href="{ url 'suppliers:photo_create' %}">Adicionar com Foto</a>
+
+    <a class="btn btn-primary"id="btnmodal_endereco" style="color: white;" data-toggle="modal" data-target="#myModal">Endereço</a>
+    <div class="btn-group">
+    <button type="button" class="btn btn-default" style="background:red;color: white;"data-target="#modal_endereco" data-dismiss="modal_endereco" aria-label="fechar modal"> 
+    [|Endereço] </button>
+    <button type="button" class="btn btn-default" style="background:green;color: white;"data-target="#modal_adicionar" data-dismiss="modal_adicionar" aria-label="fechar modal">
+    [|Adicionar] </button>
+
+       <button type="button" class="btn btn-default" style="background:green;color: white;"data-target="#modal_pesquisa" data-dismiss="modal_adicionar" aria-label="fechar modal">
+    [|Pesquisa] </button>
+    </div>
+  </h1>
+
+
+
+
+<div class="grid-container">
+  <div class="grid-item" id="modal_endereco" style="display: none">{% include "./address_modal.html" %} </div>
+  <div class="grid-item" id="modal_adicionar" style="display: none">{% include "./modal_adicionar.html" %} </div>
+  <div class="grid-item">
+</div>
+  <div>
+  <a class="btn btn-primary"  data-urlsearch="/suppliers/suppliers_search/">*Pendências </a>
+  <a class="btn btn-primary"  data-urlsearch="/suppliers/suppliers_search/">*Região </a>
+  <a class="btn btn-primary"  data-urlsearch="/suppliers/suppliers_search/">*Bairro </a>
+  </div>
+
+  <div class="grid-item">pendências em: 
+    <a class="btn btn-primary" data-search="list_sit_cad"  data-prefix="pendet_">cadastro</a>
+    <a class="btn btn-primary" data-search="list_endereco" data-prefix="pendet_">enderços</a>
+    <a class="btn btn-primary" data-search="list_social" data-prefix="pendet_">social</a>
+  </div>
+
+   <div class="grid-item">Em região: 
+
+              <div class="form-group">
+              <label for="regionSelect">Região:</label>
+              {{ form.regions }}
+              <a class="btn btn-primary" data-search="region"  data-prefix="location_" id="btn_porRegiao" >Localizar</a>
+
+              </div>
+  
+  </div>
+
+</div>
+</div>
+</div>
+
+
+  <table class="table">
+
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for object in object_list %}
+        <tr>
+          <td>
+            <a href="http://localhost:8000/suppliers/{{ object.pk }}">{{ object.trade_name }}</a>
+
+          </td>
+          <td>{{ object.email|default:'---' }}</td>
+          {% csrf_token %}
+
+          <td>
+            <a href="" id='open_endereco' style="color: hotpink;padding-left: 7px" data-target="#modal_adicionar" data-custom="1" class="icon">&#xe3c9;</a>
+            
+            <a href="{ url 'crm:person_delete' object.pk %}" style="padding-left: 7px">
+              <i class="icon">&#xe92b;</i>
+            </a>
+        
+            <a href="" id='open_endereco' style="color: hotpink;padding-left: 7px" data-target="#modal_endereco" data-custom="2" class="icon">&#xe55c;</a>
+           
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+<!-- person_modal.html -->
+ {% include "includes/pagination.html" %}
+
+
+
+
+
+{% endblock content %}
+{% block js %}
+  
+<script type="text/javascript">
+let debug='var $PADRAO@!';
+let url_complenta_search;
+let url_complementar_regiao;
+
+function abrirfecharModal(mymodal){
+          
+          let modal = document.getElementById(mymodal);
+          console.log(mymodal);
+          if (modal.style.display==="none"){
+          modal.style.display="block";
+            
+          }else{
+          modal.style.display="none";
+         
+          }
+}
+
+function customize_modal(custom){
+          
+       switch (custom){
+     case 1:
+
+      // mude o modal para  edição ;
+      console.log('modelo de edição implementar')
+
+
+      $('.customize').html(template)
+      break;
+     
+
+      case 2:
+      // mude o modal para modelo de consulta orientar pra todos  
+      console.log('modelo de consulta orienter para todos  implementar');
+      break;
+
+
+      }
+    
+}
+    $("#btn_porRegiao").on('click',function(event) {
+      let prefix= $(this).data('prefix');
+      let search= $(this).data('search');
+       
+      let regions =$('#id_regions').val();
+      let url_search=$(this).data('urlsearch');
+
+     
+      if(regions){
+      let id_search=prefix+search
+
+      url_complementar_regiao="&id_region="+regions
+
+      //url_complenta_search='&id_region='+id_region
+      console.log('line:172,def:por_regiao,form page supplier_list,evento_investigado:#btn_click url completa'+url_complenta_search)
+
+      window.location.href=url_complenta_search+'?btn_seach='+id_search;
+      }
+    });
+
+    $(".btn,.close").on('click',function(event) {
+  
+
+          let custom = $(this).data('custom');
+          let modalName=$(this).data('target'); 
+          let url_search=$(this).data('urlsearch');
+
+          if ($(this).data('urlsearch')){
+
+          url_complenta_search=window.location.origin+url_search
+           console.log('line:151,def:click .btn_click,form page supplier_list,evento_investigado:url_search *'+url_complenta_search);
+           
+
+          }
+
+          let prefix= $(this).data('prefix');
+          let search= $(this).data('search');
+          id_search=prefix+search;
+
+            console.log('line:177,def:post postData,form supplier_list,evento_investigado:consultas:'+prefix+search)
+          
+            
+         
+        if (modalName){
+          event.preventDefault();
+         if ($(modalName).css("display")==="block"){
+          $(modalName).css('display','none');
+         }else{
+          $(modalName).css('display','block');  
+         };
+
+        }else{
+           
+          let prefix= $(this).data('prefix')
+          let search= $(this).data('search')   
+          
+          let linkDirection=$(".btn,.close,.icon").attr('href');
+          
+          if(linkDirection){
+
+            if(id_search){
+            let postData = $('form').serialize();  
+            //Ajax Call.
+              if (url_complementar_regiao){
+              window.location.href=url_complenta_search+'?btn_seach='+id_search+url_complementar_regiao
+              }else{
+                window.location.href=url_complenta_search+'?btn_seach='+id_search
+              }
+            console.log('line:177,def:post postData,form supplier_list,evento_investigado:consultas:'+id_search) 
+            }else{
+            //window.location.href=linkDirection+url_search;
+            console.log('line:181,def:query .btn,form pages:supplier_detall,evento_investigado:btn_click'+linkDirection+'?'+url_search)
+            } 
+          }
+        } 
+           
+             
+        
+     });
+     
+     
+
+
+
+    $(".icon").on('click',function(event) {
+        console.log('icon em action')
+       
+       let modalName=$(this).data('target');
+  
+       if ($(modalName).css("display")==="block"){
+        $(modalName).css('display','none'); 
+        console.log('css.block line 112')
+       }else{
+        $(modalName).css('display','block');
+         console.log('css.none line 115')
+       }
+
+          event.preventDefault();
+
+     
+    });
+      
+      
+   
+
+
+
+
+
+
+
+ 
+
+</script>
+{% endblock js %}

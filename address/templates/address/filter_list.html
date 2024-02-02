@@ -1,0 +1,176 @@
+<!-- relacion_form_as_p.html -->
+{% extends "includes/bases.html" %}
+{% load static %}
+<script src="{% static 'jquery.js' %}"></script>
+
+
+
+{% block content %}
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Exemplo de como filtra vários listas</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+      <div class="col">
+        <h5>Estados</h5>
+          <table>
+            <thead>
+              <tr>
+                <th>Estado</th>
+                <th>Uf</th>
+              </tr>          
+            </thead>
+            <tbody>
+              {% for state in states %}
+                <tr>
+                  <td> <a href="" 
+                   class="state" 
+                   data-url="{% url 'relacionChip:cities_ajax' %}?uf={{ state.0 }}" 
+                   data-uf="{{ state.0 }}"
+                   >{{ state.1 }}</a>
+                  <td>{{state.0}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+     
+   <!--    <div class="col">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Cidade</th>
+                <th>UF</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for city in cities %}
+                <tr>
+                  <td>{{ city.name }}</td>
+                  <td>{{ city.uf }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table> 
+        </div> -->
+      <div class="col">
+       <div class="cities">
+        <h5>Cidades</h5>
+        <div id="id_cities">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Cidade</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+<!--       <div class="col">
+       <table class="table">
+        <thead>
+          <tr>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>UF</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for district in districts %}
+            <tr>
+              <td>{{ district.name }}</td>
+              <td>{{ district.city }}</td>
+              <td>{{ district.city.uf }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div> -->
+      <div class="col">
+        <div id="id_districts">
+        <h5>Bairros</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Bairro</th>
+              <th>Cidade</th>
+              <th>Estado</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+
+
+  </div>
+
+
+
+
+</div>
+
+{% endblock content %}
+
+{% block js %}
+
+<script>
+
+  $('.state').on('click', function(event) {
+      let url = $(this).data('url');
+      let uf = $(this).data('uf');
+      console.log(url);
+
+
+      $.ajax({
+        url:url,
+        data:{
+          uf:uf
+        },
+        success: function(response) {
+          $('#id_cities').html(response);
+          // body...
+        }
+      });
+
+
+      event.preventDefault();
+  });    
+    $(document).on('click','.city', function(event) {
+      let url = $(this).data('url');
+      let uf = $(this).data('uf');
+      console.log(url);
+
+
+      $.ajax({
+        url:url,
+        data:{
+          uf:uf
+        },
+        success: function(response) {
+          console.log("retorna");
+          $('#id_districts').html(response);
+          // body...
+        }
+      });
+
+
+      event.preventDefault();
+  });    
+</script>
+
+{% endblock js %}

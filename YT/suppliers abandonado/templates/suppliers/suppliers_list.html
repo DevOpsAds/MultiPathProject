@@ -1,0 +1,238 @@
+<!-- aSsuppliers_list.html -->
+
+{% extends "includes/base_suppliers.html" %}
+
+{% load static %}
+
+{% block css %}
+  <script src="{% static 'jquery.js' %}"></script>
+{% endblock css %}
+
+{% block content %}
+
+
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Área do fornecedor</h1>
+    <p>zanask</p>
+  </div>
+</div>
+
+
+
+    <div style="border: dashed 1px grey;">
+    <form id="myForm"
+            method="GET"
+            class="form-inline"
+            data-regions="{{ request.GET.id_region }}"
+            data-bairros="{{ request.GET.id_bairro }}" >
+
+    Lista 14:02
+    <a class="btn btn-primary" href="{ url 'suppliers:person_create' %}">Adicionar</a>
+    <a class="btn btn-primary" href="{ url 'suppliers:photo_create' %}">Adicionar com Foto</a>
+
+    <a class="btn btn-primary"id="btnmodal_endereco" style="color: white;" data-toggle="modal" data-target="#myModal">Endereço</a>
+    <div class="btn-group">
+    <button type="button" class="btn btn-default" style="background:red;color: white;"data-target="#modal_endereco" data-dismiss="modal_endereco" aria-label="fechar modal"> 
+    [|Endereço] </button>
+    <button type="button" class="btn btn-default" style="background:green;color: white;"data-target="#modal_adicionar" data-dismiss="modal_adicionar" aria-label="fechar modal">
+    [|Adicionar] </button>
+
+       <button type="button" class="btn btn-default" style="background:green;color: white;"data-target="#modal_pesquisa" data-dismiss="modal_adicionar" aria-label="fechar modal">
+    [|Pesquisa] </button>
+    </div>
+
+     <div class="form-group">
+          <button id="btnSubmit" class="btn btn-success" type="submit">Filtrar</button>
+      </div>
+
+
+    <div class="grid-item">Em região: 
+    <div class="form-group">
+    <label for="regionSelect">Região:</label>
+    {{ form.regions }}
+    <a id="btn-localizar" class="btn btn-primary" data-search="region"  data-prefix="location_"  >Localizar</a>
+    </div>
+    </div>
+
+    <div class="grid-item">Em bairro: 
+    <div class="form-group">
+    <label for="regionSelect">Bairro:</label>
+    {{ form.bairro }}
+    <a id="btn-locBairro" class="btn btn-primary" data-search="bairro"  data-prefix="location_"  >Localizar</a>
+    </div>
+    </div>
+      
+
+      </form>
+    
+  </div>
+
+
+
+
+
+<div class="grid-container">
+  <div class="grid-item" id="modal_endereco" style="display: none">{% include "./modal_address.html" %} </div>
+  <div class="grid-item" id="modal_adicionar" style="display: none">{% include "./modal_adicionar.html" %} </div>
+  <div class="grid-item">
+</div>
+<div class="filter">
+  <div>
+  <a class="btn btn-primary"  href="/suppliers/suppliers_search/?btn_search=pendencia">*Pendências </a>
+  <a class="btn btn-primary"  href="/suppliers/suppliers_search/?btn_search=location_region">*Região </a>
+  <a class="btn btn-primary"  href="/suppliers/suppliers_search/?btn_search=location_district">*Bairro </a>
+  </div>
+location_region
+  <div class="grid-item">pendências em: 
+    <a class="btn btn-primary"  href="/suppliers/suppliers_search/?btn_search=pendet_list_sit_cad">Cadastro</a>
+    <a class="btn btn-primary"  href="/suppliers/suppliers_search/?btn_search=pendet_list_endereco">Endereços</a>
+    <a class="btn btn-primary"  href="/suppliers/suppliers_search/?btn_search=pendet_list_social">Social</a>
+  </div>
+
+</div>  
+
+</div>
+</div>
+</div>
+
+
+  <table class="table">
+
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for object in object_list %}
+        <tr>
+          <td>
+            <a href="http://localhost:8000/suppliers/{{ object.pk }}">{{ object.trade_name }}</a>
+
+          </td>
+          <td>{{ object.email|default:'---' }}</td>
+          {% csrf_token %}
+
+          <td>
+            <a href="" id='open_endereco' style="color: hotpink;padding-left: 7px" data-target="#modal_adicionar" data-custom="1" class="icon">&#xe3c9;</a>
+            
+            <a href="{ url 'crm:person_delete' object.pk %}" style="padding-left: 7px">
+              <i class="icon">&#xe92b;</i>
+            </a>
+        
+            <a href="" id='open_endereco' style="color: hotpink;padding-left: 7px" data-target="#modal_endereco" data-custom="2" class="icon">&#xe55c;</a>
+           
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+<!-- person_modal.html -->
+ {% include "includes/pagination.html" %}
+
+
+
+
+
+{% endblock content %}
+{% block js %}
+  
+<script type="text/javascript">
+let debug='var $PADRAO@!';
+let urlfield;
+let search;
+let urlSearch;
+let urlSearchRegions;
+
+
+  $('form').on('submit', function(e) {
+    let url = "//localhost:8000/aberto em teste"
+    let postData = $('form').serialize();
+    let myurl=window.location.href
+    window.location.href=url
+
+    $.ajax({
+      url: url, 
+      type: 'GET',
+      data: postData,
+      success: function(response) {
+          const data = response.data;
+          console.log(data); 
+
+   
+        const template = '<tr>' +
+        '<td> <a style="color: green";>' + response.data[3] +'</a> </td>' +
+        '<td> <a style="color: green";>' + response.data[4] + '</a> </td>' +
+        '<td> <a href="'+ myurl +' " style="color: green"; class="icon">&#xe923 </a> </td>' +
+        '</tr>'
+
+        $('table tbody').append(template)
+    
+      },
+      error: function(xhr) {
+        console.log('Erro')
+      },
+    
+    });
+    e.preventDefault();
+  });
+
+      $(document).ready(function(e) {
+      let bairros = $('#myForm').data('bairros')
+      let regions = $('#myForm').data('regions')
+      console.log('line:191,def:static valoues combos error,form page suppers_list 2,evento_investigado:event'+regions)
+   
+      console.log(regions)
+       
+       
+        
+ 
+      if (bairros) {
+        $('#id_bairro option[value='+bairros+']').attr('selected', 'selected');
+     
+      }
+      if (regions) {
+        $('#id_region option[option='+regions+']').attr('selected', 'selected');
+      }
+     
+    
+
+     });
+
+
+  $('#btn-localizar').on('click', function(e) {
+    let id_region =$('#id_regions').val();
+    let url = "/suppliers/suppliers_search/?btn_search=location_region_pk"
+    let postData = $('form').serialize();
+    let myurl=window.location.href
+    window.location.href=url+'&id_region='+id_region
+
+    e.preventDefault();
+  });
+
+  $('#btn-locBairro').on('click', function(e) {
+    let id_region =$('#id_bairro').val();
+    console.log(id_region)
+    let url = "/suppliers/suppliers_search/?btn_search=location_district_pk"
+    let postData = $('form').serialize();
+    let myurl=window.location.href
+    window.location.href=url+'&id_bairro='+$('#id_bairro').val();
+
+     e.preventDefault();
+  });
+
+
+
+
+ 
+
+</script>
+{% endblock js %}

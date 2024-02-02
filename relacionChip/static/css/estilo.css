@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'Oswald';
+    src: url('../fonts/Oswald-Regular.ttf') format('truetype');
+}
+
+* {
+    font-family: 'Oswald', sans-serif;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: #00000;
+    color: #fff;
+    height: 100%;
+}
+
+table {
+    border-collapse: collapse;
+
+}
+
+tr {
+    border-bottom: solid 1px white;
+}
+
+td {
+    font-size: 1.6em;
+    padding: 10px;
+}
+
+li {
+    font-size: 1.6em;
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+}
+
+.exercicio div {
+    font-size: 1.8em;
+    border: solid 5px #fff;
+    padding: 0px 40px;
+    margin: 10px;
+}
+
+
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: #212529;
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: #212529;
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: #212529;
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6
+}
+.exercicio div:nth-of-type(1) {
+    background-color: darkgoldenrod;
+}
+
+.exercicio div:nth-of-type(2) {
+    background-color: crimson;
+}
+
+.exercicio div:nth-of-type(3) {
+    background-color: darkcyan;
+}
+
+.exercicio div:nth-of-type(4) {
+    background-color: darkorchid;
+}
+
+.exercicio div:nth-of-type(5) {
+    background-color: dodgerblue;
+}
+
+.exercicio div:nth-of-type(6) {
+    background-color: salmon;
+}
+
+.exercicio .destaque {
+    border: solid 10px greenyellow;
+    color: greenyellow;
+    font-weight: bold;
+}

@@ -1,0 +1,271 @@
+<script>
+      function closeModalEnderco(){
+          if (modal.style.display==="none"){
+          modal.style.display="block";
+
+          }else{
+          modal.style.display="none";
+
+
+
+          }
+      }
+
+
+      let btn = document.getElementById("btnmodal_endereco");
+      let modal = document.getElementById("modal_endereco");
+      modal.style.display="block";
+
+      btn.addEventListener("click", function(){
+       
+          modal.style.display="block";
+        
+
+      });
+
+    $('#btnmodal_endereco').on('click', function(event) {
+      
+     
+      btn.addEventListener("click", function(){
+
+      closeModalEnderco();
+
+      });
+
+    
+    }); 
+
+    $('.close').on('click', function(event) {    
+       
+           closeModalEnderco();
+        
+    }); 
+
+    $('#btnclose_modalenderco').on('click', function(event) {    
+      
+          closeModalEnderco();
+        
+    }); 
+  
+ 
+</script>
+
+
+ button.onclick =function() {
+        modal.style.display="block";
+        closeModalEnderco();
+      }
+
+
+         button.addEventListener("click", function(){
+       
+          modal.style.display="block";
+        
+
+      });
+
+
+
+
+    const button= document.querySelector("button");
+    const button2= document.querySelector("button");
+     
+   
+    button.onclick =function() {
+        closeModalEnderco();
+      }
+
+
+
+
+    $(document).on('click','.city', function(event) {
+      let url = $(this).data('url');
+      let uf = $(this).data('uf');
+      console.log(url);
+
+
+      $.ajax({
+        type:'get',
+        url:url,
+        data:{
+          uf:uf
+        },
+        success: function(response) {
+          console.log("retorna");
+          $('#id_districts').html(response);
+          // body...
+        }
+      });
+
+
+      event.preventDefault();
+  });    
+
+
+    let button=$(".btn");
+
+    $(document).ready(function(){
+      alert("A página foi carregada"+button);
+    });
+
+
+       button.each(function(){
+        alert($(this).text());
+     });
+
+     <script>
+      function closeModalEnderco(){
+          if (modal.style.display==="none"){
+          modal.style.display="block";
+
+          }else{
+          modal.style.display="none";
+
+
+
+          }
+      }
+
+    const button= document.querySelector('button');
+     
+      button.onclick =function() {
+        closeModalEnderco();
+      }
+    
+
+      
+  
+ 
+</script>
+onclick="abrirfecharModal()" 
+
+ function abrirfecharModal(mymodal){
+          
+          let modal = document.getElementById(mymodal);
+          console.log(mymodal);
+          if (modal.style.display==="none"){
+          modal.style.display="block";
+          button.style.background="#60738f";  
+          }else{
+          modal.style.display="none";
+          button.style.background="#0d6efd";
+          }
+      }
+
+      
+      $(".btn").on('click',function() {
+        let modalName=$(this).data('dismiss');
+        if (modalName){
+        abrirfecharModal(modalName);
+        }
+      });
+
+
+
+        <div class="grid-container">
+
+  <div class="grid-item" id="modalContainer">
+   
+      <div class="grid-item" id="modal_endereco" tabindex="1" role="dialog" aria-labelledby="myModalLabe3l"style="display: none">
+         {% include "./address_modal.html" %} 
+      </div>
+ </div>
+ <div class="grid-item" id="modal2Container">
+   
+      <div class="grid-item" id="modal_adicionar" tabindex="1" role="dialog" aria-labelledby="myModalLabe3l"style="display: none">
+        {% include "./modal_adicionar.html" %} 
+      </div>
+ </div>
+ 
+ </div>
+
+
+
+ ------------------
+   
+        $(".btn").on('click',function() {
+        let modalName=$(this).data('target');
+  
+       if ($(modalName).css("display")==="block"){
+        $(modalName).css('display','none'); 
+        console.log('css.block line 112')
+      }else{
+        $(modalName).css('display','block');
+         console.log('css.none line 115')
+      }
+     
+
+      let postData = $('form').serialize();
+      $.ajax({
+        type: 'GET',
+        url:url,
+        data:{
+          data: postData,
+        },
+        success: function(response) {
+         console.log('retorno em Json 76') 
+         console.log(response.data)
+         $('#id_endereco').val(response.data[0]);
+         $('#id_bairro').val(response.data[1]);
+         $('#id_cidade').val(response.data[2]);
+         $('#id_uf').val(response.data[3]);
+          
+         
+          // body...
+        }
+        
+
+        cep =response.endereco[0]
+         endereco=response.endereco[1]
+         numero=response.endereco[2]
+         telefone=response.endereco[3]
+         complemento=response.endereco[4]
+         bairro=response.endereco[5]
+         cidade =response.endereco[6]
+         uf=response.endereco[7]
+      
+          complemento=response.endereco[]
+        const labelArray=['cep','endereco','n°','telefone','complemento','bairro','cidade','uf'] 
+
+
+                const template =  '<table class="table">'+'<thead>'+
+                          '<title>cadastro de endereços</title>'+
+                          
+                          '</thead>'+
+
+        '<ol>'+
+        '<tr>' +
+        '<li>' + 'cep :'  +  response.endereco[0] + '</li>'+
+        '<li>' + 'endereço :'  + response.endereco[1] + '</li>'+
+        '<li>' + 'n° :'  + response.endereco[2] + '</li>'+
+        '<li>' + 'telefone :'  +  response.endereco[3] + '</li>'+
+        '{% if complemento %}'+
+        '<li>' + 'complemento :'  +response.endereco[4] + '</li>'+
+        '{% endif %}'+
+        '<li >' + 'rua :'  +  response.endereco[5] + '</li>'+
+        '<li>' + 'bairo :' + response.endereco[6] + '</li>'+
+        '<li>' + 'cidade :'  +  response.endereco[7] + '</li>'+
+        '<li>' + 'uf :' + response.endereco[8] + '</li>'+
+   
+    
+        '</tr>'+
+      '</ol>'+
+      '</table>'
+
+
+
+           'if (valueArrays){'+
+               '<li>' + labelarray +': '+ valueArrays + '</li>'+
+            '}else{'+
+                '<li style="color: red;">' + labelarray +': '+ valueArrays + '</li>'+
+        '}'+
+        '{% endfor %}'
+
+
+            <div class="col-6 mt-4 m-auto ">
+        {% if msg %}
+        <div class="alert {{class}}">
+            {{msg}}
+        </div>
+create.html
+        {% endif %}

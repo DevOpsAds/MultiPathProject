@@ -1,0 +1,285 @@
+Modificar Gênesis
+Protocolos de rede
+HISTÓRICO
+Por favor corrija o erro abaixo.
+
+
+Acessível para grup:
+
+---------
+ ModificarAdicionarApagarVisualizar
+Privilegio:
+
+---------
+ ModificarAdicionarApagarVisualizar
+Situacao:
+
+Aguardando
+
+Ativo
+
+Existe/deletado
+Se for True o item existe. Se for False o item foi deletado.
+Data:
+05/09/2023
+ Hoje | 
+Index l.
+30
+linha ..
+Col.
+c
+coluna ..
+Call:
+10
+piso ..
+Nome:
+Protocolos de rede
+Ref./*:
+REDE PROTOCOL
+Descreva:
+sugerir uma atenção  a essa modelagens pois certamente esta os pricipios do entendimento de funcionalidade de rede de computradores essas modelagens
+Mov.conf.
+
+Rede de computadores /-> Entendendo redes de computadores
+ ModificarAdicionarVisualizar
+Created user:
+
+@joao1
+ ModificarAdicionarApagarVisualizar
+
+GÊNESIS O PRINCÍPIO
+ACESSÍVEL PARA GRUP	PRIVILEGIO	SITUACAO	ATIVO	EXISTE/DELETADO (Se for True o item existe. Se for False o item foi deletado.)	DATA	INDEX L. (linha ..)	COL. (coluna ..)	CALL (piso ..)	NOME	REF./*	DESCREVA	CREATED USER	APAGAR?
+TCP/IP	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+10
+a
+10
+TCP/IP
+Transmission Control Protocol Internet Protocol
+e dividido em 4 camadas - sendo ultilizado pra a troca de informaçoes em rede
+as camadas:
+
+-Aplicação direção: 10b:20
+-Transporte
+-Inter-redes
+-Host-Redes
+
+---------
+ ModificarAdicionarApagarVisualizar	
+SSL/TSL	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+15
+a
+20
+SSL/TSL
+CERT. 1995
+Secury Sochets Layer
+camada de aplicação 
+criptografia em MD5 e RSA 
+chaves publicas e privadas de segurança
+aplicadas em (HTTPS)
+
+---------
+ ModificarAdicionarApagarVisualizar	
+camada de Aplicação	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+20
+a
+10
+camada de Aplicação
+chave{ protocol
+A camada na aplicação esta contidas todos os protocolos
+Telnet:23
+FTP-File Transfer Protocolo port:21
+SMTP-Simple Mail Protocolo port:25
+DNS-Domain Name System port:53
+HTTP-Hypertext Transfer Protocol port:80
+IMAP -Internet Mensager Acess Protocol port:143
+
+---------
+ ModificarAdicionarApagarVisualizar	
+UDP	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+10
+b
+10
+UDP
+RFC768¬
+User Datagram Protocol
+Caractesitcas 
+entrega não garantida , nao confiavel,não eleimina pacotes duplicados, não realiza controle de rede
+caractersticas :otima escolha para fluxo de dados em tempo real pois eliminas as burocracias e permite maior velocidade de transmissão de dados e usos em aplicativos de voz
+
+---------
+ ModificarAdicionarApagarVisualizar	
+DHCP	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+10
+c
+10
+DHCP
+Dynamic Host Configuration Protocol
+
+responsavel por adcionar dinamicamente um nurmero ip para novos equipamentos atribuidos a rede
+visualização e leitura feita por browzers 
+Localizado na camada de aplicação 
+atuando Cliente Servidor 
+premitindo obter dados de resposta ou leitura do cliente em status
+
+---------
+ ModificarAdicionarApagarVisualizar	
+HTTP	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+10
+d
+10
+HTTP
+Hipertexxt transfer Protocol
+Aquivo de text para transverencia via  TCP .
+
+---------
+ ModificarAdicionarApagarVisualizar	
+HTTPS	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+15
+d
+10
+HTTPS
+var/HTTP
+Hiper Text protocol secure 
+
+Arquivo de camada de segurança de informação permitindo a criptografia de dados utilizando comp base Certificados digitais 
+SSL
+TSL
+segurançã extrema
+
+---------
+ ModificarAdicionarApagarVisualizar	
+SSH	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+10
+e
+10
+SSH
+Security Shell
+Protocolo para login remoto semelhante ao TelNET
+transferncia de dados por algoritimos criptografados 
+
+oferecedor de serviços :
+autenticação de user, integridade de dados entre outros .
+porta 22 disponive para camada de aplicação 
+e comum em aplicações do tipo putty ode e usado para executar sripts de arquivos  e comandos remotaente
+
+---------
+ ModificarAdicionarApagarVisualizar	
+DNS	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+10
+f
+10
+DNS
+Domain Name System
+protocole de atribicao de nome ao enderecos ipś  apos aplicado em a rede passa a busca por nomes oa inves de numeros de enterecos TCP/IP
+
+---------
+ ModificarAdicionarApagarVisualizar	
+SNMP	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+10
+g
+10
+SNMP
+System network Management Protocol
+  
+o protocolo de manutenção de rede sendo utilzados por admistradores para realização de e obseversão de problemas de configuração e outros em Devices de rede
+
+---------
+ ModificarAdicionarApagarVisualizar	
+RIP/BGP	
+---------
+ ModificarAdicionarApagarVisualizar	
+---------
+ ModificarAdicionarApagarVisualizar	
+Aguardando
+		
+05/09/2023
+ Hoje | 	
+10
+h
+10
+RIP/BGP
+Roteamento
+Protocolo de armazenamento de rotas automaticas
+
+---------
+ ModificarAdicionarApagarVisualizar	

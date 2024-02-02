@@ -1,0 +1,81 @@
+    <!-- suppliers/suppliers_modal.html -->
+
+    {% load static %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    {% block content %}
+    <!-- suppliers/suppliers_modal address.html -->
+
+
+
+
+
+
+      <div class="grid-item" id="modal_address" >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Consultar</h4>
+            <button type="button" class="close" data-dismiss="modal"  style="color: red"; data-target="#modal_sit_cat"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <form>
+        
+
+             <form>
+            <div class="modal-body">
+              <input type="hidden" name="csrfmiddlewaretoken" value="jVrcxFXHAA3ikpT2xwqCqghcvgsD5umv2U1EsNN8q4aLPmbBHIytI6hHvmI7AJGQ">
+              <div class="form-group">
+                <p>
+                <label for="id_progress">Progress:</label>
+               <select name="progress" id="id_progress">
+      <option value="texting">Texting</option>
+
+      <option value="creating">Creating</option>
+
+      <option value="doing">Doing</option>
+
+      <option value="done">Done</option>
+
+    </select>
+        
+        
+      </p>
+
+      
+      <p>
+        <label for="id_exist_deleted">em uso /inativo:</label>
+        <input type="checkbox" name="exist_deleted" id="id_exist_deleted">
+        
+          <span class="helptext">Se for True para cadastro ativo(em uso) . Se for False o item está inativo.</span>
+        
+        
+          
+        
+      </p>
+              </div>
+            </div>
+          <div class="modal-footer">
+            <button id="btnclose_modal_sit_cat" type="button" class="btn btn-default" data-target="#modal_sit_cat" data-dismiss="modal">Fechar</button>
+           
+             <button id="btnUpdatesit"  type="submit" class="btn btn-primary">Update</button>
+          </div>
+          </form>
+        </div>
+      </div>
+      </div>
+
+       </div>
+
+
+    {% endblock content %}
+
+    {% block js %}
+    <script>
+
+     
+     
+    </script>
+
+    {% endblock js %}
+
+

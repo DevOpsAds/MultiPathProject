@@ -1,0 +1,85 @@
+<!-- relacion_form_as_p.html -->
+{% extends "includes/bases.html" %}
+{% load static %}
+<script src="{% static 'jquery.js' %}"></script>
+
+{% block css %}
+  <style>
+    .required:after {
+      content: "*";
+      color: red;
+    }
+    .errorlist {
+      list-style: none;
+      color: red;
+    }
+  </style>
+{% endblock css %}
+
+{% block content %}
+
+  <h1 id='hide' >Formulário  relacionChip form.as_p</h1>
+  <div class="cols-6">
+
+    <form class="form-horizontal" action="." method="POST">
+      {% csrf_token %}
+
+
+        <div class="col-sm-6">
+            {{ form.media }}
+          {{ form.as_p }}
+
+        <div class="form-group">
+          <button class="btn btn-primary"  type="submit" >Salvar</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+{% endblock content %}
+
+{% block js %}
+
+<script>
+     function exibirResultado(id, dados){
+      const texto=JSON.stringify(dados)
+      console.log (texto+"visitado")
+
+            //const texto=JSON.stringify(dados)
+       const id_select=document.getElementById('hide').innerHTML="leitura"+texto        
+        }
+
+    $(document).ready(function(){
+      alert("A página foi carregada")
+
+
+    });
+                                                                                                                                                                                                                                                                                                    
+    $('select').on('change', $.proxy( function(){
+      var selectValue =$(this).val();
+      alert("A seletor ativado"+selectValue); 
+      var data ={
+      'idSelect':selectValue
+      }
+
+      $.ajax({
+      type:'get',
+      url: 'http://localhost:8000/chip/manual/',
+      data:data,
+      success: function(response,require){
+         exibirResultado('post',data)
+      
+      },
+      error(e){
+        exibirResultado('post', 'O site esta indisponível no momento!, Desculpe(sory)')
+        }
+    
+    
+      })   
+
+    })
+    )
+
+    </script>
+
+{% endblock js %}

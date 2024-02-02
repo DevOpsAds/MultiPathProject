@@ -1,0 +1,61 @@
+<!-- suppliers/address_modal.html -->
+
+{% load static %}
+<script src="{% static 'js/jquery.js' %}"></script>
+
+{% block content %}
+<!-- suppliers/suppliers_modal address.html -->
+
+
+
+
+
+
+  <div class="grid-item" id="modal_address" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Consultar</h4>
+        <button type="button" class="close" data-dismiss="modal"  style="color: red"; data-target="#modal_endereco"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <!-- Formulario -->
+      <form>
+        <div class="modal-body">
+         <div class="spinner" style="border: 13px solid rgb(227 12 12 / 10%);border-top-color: #b14b4b; margin: auto;
+    "> </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-danger">Delete</button>
+          <a class="btn btn-danger" href="{% url 'supplier:supplier_delete' object.pk %}" > Sim</a>
+        </div>
+                    
+       
+        </div>
+        
+        <div class="modal-footer">
+           <div class="form-group">
+          <a type="button" class="btn btn-light" href="{% url 'supplier:SuppliersDetailView' object.pk %}" > Fechar</a>
+       
+              
+          <a type="button" class="btn btn-warning" href="{% url 'supplier:SuppliersUpdateView' object.pk %}" > Editar</a>
+       </div>
+     
+            
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+   </div>
+
+
+{% endblock content %}
+
+{% block js %}
+<script>
+
+
+</script>
+
+{% endblock js %}
+
+

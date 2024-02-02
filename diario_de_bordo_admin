@@ -1,0 +1,20 @@
+implemet a possible de gerar pesquisas de aprendizado para o sitema 
++ o sistema deverar gerar seu proprio material de avalicao e aprendizado
+pesuqis de cruzamento de informaçoes
+
+
+
+falha em postgres
+
+
+sudo systemctl restart postgresql 
+service postgresql restart
+
+
+caso nao resolva 
+* verifique os aquivos de log para obter mais informaçoes do erro .
+var/log/postgresql/
+
+postgresql.log
+
+verifique o espaço em disco. verifique limpe a lixeira 

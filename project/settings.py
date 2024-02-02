@@ -28,19 +28,36 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_matplotlib',
+    'django_filters',
+
+    'address',
+
     'app',
+    'api',    
     'crm',
-
-
+    'expense',
+    'fl2',
+    'eleutero',
+    'marketing',
+    'supplier',
+    'finance',
+    'valores_qualitativos',  
+      
+    'relacionChip',
+        
 ]
 
 MIDDLEWARE = [
@@ -80,7 +97,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sistema',
+        'NAME': 'sistema_rec',
         'USER': 'postgres',
         'PASSWORD': 'taiobeiras',
         'HOST': 'localhost',

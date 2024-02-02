@@ -1,0 +1,231 @@
+<!-- person_list.html -->
+{% extends "includes/base_supplier.html" %}
+{% load static %}
+
+
+{% block content %}
+
+</script>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Gráfico</h1>
+    <p>zanask</p>
+  </div>
+</div>
+
+
+    <div style="border: dashed 1px grey;">
+    <form id="myForm"
+            method="GET"
+            class="form-inline"
+            data-regions="{{ request.GET.id_region }}"
+            data-bairros="{{ request.GET.id_bairro }}" >
+  
+    Análise
+    <div>
+    <p>iA neuronio 1
+    <a id="btn_neuronio_1"class="btn btn-primary" >N_1**And</a>
+    </div>
+    <a class="btn btn-primary" href="{% url 'crm:photo_create' %}">Adicionar com Foto</a>
+    <a class="btn btn-primary" style="color: white;" data-toggle="modal" data-target="#myModal">Adicionar via Ajax</a>
+  </h1>
+    </form>
+    </div>
+    {% for key,value in dados.items %}
+    <li>{{ key }}:{{value }}</li>
+    {% endfor %}
+  
+<div style= "gap: 30px;margin: auto;width:80%;">
+  <canvas id="myChart" width="500" height="500">canvas</canvas>
+
+
+  <canvas id="twoChart" width="500" height="500">canvas</canvas>
+
+  <canvas id="treeChart" width="500" height="500">canvas</canvas>
+
+
+<div id="output" width="500" height="500">div</div>
+
+
+
+</div>
+
+  
+
+<!-- person_modal.html -->
+
+
+{% endblock content%}
+
+{% block js %}
+<script>
+  $(document).ready(function(){
+
+
+    let ctx2_graf =document.getElementById('twoChart').getContext('2d');
+    let labels2_graf=["Janeiro ","Fevereiro","Março","Abril","Maio"];
+    let data2_graf=[100,150,200,120,180];
+    let twoChart =new Chart(ctx2_graf,{
+      type:"line",
+      data:{
+        labels:labels2_graf,
+        datasets:[{
+          label:'Vendas',
+          data:data2_graf,
+          backgroundColor:'rgba(75,192,192,0.2',
+          borderColor:'rgba(75,192,192,1)',
+          borderWidth:2,
+          pointRadius:15,
+          fill:false
+        }]
+      },
+       options:{
+        scales:{
+          x:{
+            type:'category',
+            labels:labels2_graf,
+            grid:{
+              display:false
+            }
+          },
+          y:{
+            beginAtZero:false,
+            grid:{
+              display:true
+            }
+          }
+        },
+        responsive:true,
+        maintainAspectRatio:true
+      }
+    });
+
+    let ctx3_graf =document.getElementById('treeChart').getContext('2d');
+    let labels3_graf=["Janeiro ","Fevereiro","Março","Abril","Maio"];
+    let data3_graf=[100,150,200,120,180];
+    let data3b_graf=[50,152,20,20,130];
+    let treeChart =new Chart(ctx3_graf,{
+      type:"line",
+      data:{
+        labels:labels3_graf,
+        datasets:[
+        {
+          label:'Função de Seno',
+          data:data3_graf,
+          backgroundColor:'rgba(75,192,192,0.2',
+          borderColor:'rgba(75,192,192,1)',
+          borderWidth:2,
+          pointRadius:15,
+          fill:false
+        },
+
+        {
+          label:'Função de Seno',
+          data:data3b_graf,
+          backgroundColor:'rgba(75,192,192,0.2',
+          borderColor:'rgba(192,75,192,1)',
+          borderWidth:2,
+          pointRadius:15,
+          fill:false
+        }
+
+
+        ]
+      },
+       options:{
+        scales:{
+          x:{
+            type:'linear',
+            title:{
+              display:true,
+              text:'Angulo(graus)' 
+            }
+          },
+          y:{
+            beginAtZero:true,
+            title:{
+              display:true,
+              text:'Valor da Função' 
+            }
+          }
+        },
+        responsive:true,
+        maintainAspectRatio:true
+      }
+    });
+
+
+     
+     console.log('line:58-varsi');
+  });
+
+  $('#btn_neuronio_1').on('click',function(e){
+    function randomColor(){
+     
+      console.log("#"+ Math.floor(Math.random()*1677215).toString(16))
+       return "#"+ Math.floor(Math.random()*1677215).toString(16);
+    }
+
+
+
+      let url='http://localhost:8000/supplier/zanask/documents/'
+      let postData = $('form').serialize();
+      $.ajax({
+      url: url, 
+      type: 'GET',
+      success: function(response) {
+    dado=[response.dados['learng_rate'],response.dados['interactions'],response.dados['b'],response.dados['bw'],response.dados['weights']]
+    let keys=Object.keys(response.dados);
+    keys.splice(1,1);
+    dado.splice(1,1);
+  
+   
+           
+          
+
+
+    let ctx =document.getElementById('myChart').getContext('2d');
+    let labels_ia_neuro_1=keys
+    let dados=dado
+    let myChart =new Chart(ctx,{
+      type:"bar",
+      data:{
+        labels:keys,
+        datasets:[{
+          label:response.dados['titulo'],
+          data:dados,
+          backgroundColor:[randomColor(),'rgba(75,192,192,0.2',randomColor(),randomColor(),randomColor(),randomColor()],
+          borderColor:'rgba(75,192,192,1)',
+          borderWidth:1
+        }]
+      },
+      options:{
+        scales:{
+          y:{
+            beginAtZero:true
+          }
+        }
+      }
+    });
+
+
+    
+      },
+      error: function(xhr) {
+        console.log('Erro')
+      },
+    
+    });
+   
+    e.preventDefault();
+
+
+    
+  })
+</script>
+
+
+
+
+{% endblock js %}

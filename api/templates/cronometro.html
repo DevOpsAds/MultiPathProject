@@ -1,0 +1,102 @@
+
+{% extends "includes/base_cronoment.html" %}
+{% load static %}
+
+{% block content %}
+<div class= "container mt-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="login-box">
+            <h2 class="text-center mb-4">Almoçar!</h2>
+            <form name="form-painel" id="formPainel" method="post" action="/dologin/">
+                <div class="form-grop ">
+                 {% if msg %}
+                <div class="alert {{class}}">
+                {{msg}}
+                </div>
+                {% endif %}
+        
+        {% csrf_token %}
+        
+        <div class="spinner"> </div>
+         <label for="lab-controler">Controles:</label>
+      
+        <div class="login-input">
+
+        <div class="btn-group" role="grup" arial-label="Operações">
+
+            <div class="controllers-play">
+
+                <a  id='supp_detail' class="text-controller" href="{ url 'supplier:SuppliersDetailView' object.pk %}"   id='supp_update' style="color:#fffff;padding-left: 7px" data-target="#modal_endereco" data-custom="2"><i class="icon">&#xe55c;</i> início</a>
+            </div>
+
+            <div class="controllers-stop">
+
+                <a  id='supp_detail' class="text-controller" href="{ url 'supplier:SuppliersDetailView' object.pk %}"   id='supp_update' style="color:#fffff;padding-left: 7px" data-target="#modal_endereco" data-custom="2"><i class="icon">&#xe888;</i> pare</a>
+            </div>
+
+         <td>
+        
+            <a  id='supp_detail' class="btn-list-crud-success" href="{ url 'supplier:SuppliersDetailView' object.pk %}"   id='supp_update' style="color:#fffff;padding-left: 7px" data-target="#modal_endereco" data-custom="2"><i class="icon">&#xe55c;</i></a>
+
+            <a id='supp_edit'class="btn-list-crud-warning" href="{ url 'supplier:SuppliersUpdateView' object.pk %}"  style="color:#fffff;padding-left: 7px" data-target="#modal_adicionar" data-custom="1"> <i class="icon">&#xe3c9;</i></a>
+            
+            <a  id='supp_delete' class="btn-list-crud-danger" href="{ url 'supplier:SuppliersDeleteView' object.pk %}" style="color:#fffff; padding-left: 7px">
+              <i class="icon">&#xe872;</i>
+            </a>
+        
+            
+           
+          </td>
+
+        <div class=black> Iníciar
+    
+        </div>
+        <div> 
+         <button type="button" class="btn btn-warning">
+            <span class="btn-icon"><i class="icon">&#xe55c;</i></span>
+            Parar
+        </button>
+        </div>
+
+
+        <button type="button" class="btn btn-warning">
+            <span class="btn-icon"><i class="fas fa-home"></i></span>
+            Aternar
+        </button>
+        <button type="button" class="btn btn-secondary">
+            <span class="btn-icon"><i class="fas fa-home"></i></span>
+            parar
+        </button>
+        </div>
+        <label for="password">Imprevistos</label>
+        <input class="form-control mt-4" type="password" name="password" id="password" placeholder="Senha:">
+        <input class="btn btn-dark mt-4" type="submit" value="Entrar">
+        </div>
+
+                </div>
+    
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+  $(document).ready(function(){
+  
+    $('.btn').focus()
+  })
+  
+
+
+ </script>
+
+{% endblock js %}
+
+
+

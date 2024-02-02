@@ -1,0 +1,16 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Cida_ceps_de</th>
+			<th>{{ cep }} {{cidade}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for cep in ceps %}
+		<tr>
+			<td><a href="" class="city" data-url="{url 'relacionChip:districts_ajax'%}?city={{city.pk}}" data-uf="city.pk"> {{cep}}</a></td>
+			<td>{{ cep }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
